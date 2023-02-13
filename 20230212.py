@@ -18,7 +18,6 @@ print(solution(4,14))
 #     print(temp)
 #     answer = temp
 #     return answer
-
 # num, total => 
 # 3, 12
 # [3, 4, 5], [n-1, n, n + 1]
