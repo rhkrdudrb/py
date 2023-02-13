@@ -1,19 +1,19 @@
-import math
-def solution(num, total):
-    avg = total / num 
-    ceil = avg - num/2
-    result = []
-    if num%2 == 1:
-        start = avg - num // 2 # 5- (5 // 2 2)
-        for i in range(start, start + num): #start부터 시작해서 start+num의 범위까지
-            result.append(i)
-        return result
-    else:
-        start = math.ceil(ceil)
-        for k in range(start, start + num): 
-            result.append(k)
-    return result
-print(solution(4,14))
+# import math
+# def solution(num, total):
+#     avg = total / num 
+#     ceil = avg - num/2
+#     result = []
+#     if num%2 == 1:
+#         start = avg - num // 2 # 5- (5 // 2 2)
+#         for i in range(start, start + num): #start부터 시작해서 start+num의 범위까지
+#             result.append(i)
+#         return result
+#     else:
+#         start = math.ceil(ceil)
+#         for k in range(start, start + num): 
+#             result.append(k)
+#     return result
+# print(solution(4,14))
 
 #     print(temp)
 #     answer = temp
@@ -52,19 +52,32 @@ print(solution(4,14))
 #          return common[-1] + (common[1] - common[0])   #4+(2-1) =5
 #     return common[-1] * (common[1] / common[0])   #8*(4/2) =16
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# if s == word[:len(s)]: # 
 # def solution(babbling):
 #     answer = 0
 #     hi = ["aya", "ye", "woo", "ma"]
 #     for word in babbling:
 #         for s in hi:
 #             if s == word[:len(s)]: # 
-#                  i = i.replace(s,'?')        #i를 hi를 ?으로 치환한다
-#             else :
-#                  continue
-#         #print("치환된 아이"+i.strip('?'))
+#                  word = word.replace(s,'?')        #i를 hi를 ?으로 치환한다   
+#         print("치환된 아이"+word.strip('?'))
 #         if word.strip('?') == '':          #?으로만 있는문자는 모두 발음이 된다 판단하에 ?을 공백으로 치환후 answer +1
 #                 answer += 1    
 #     return answer
+def solution(babbling):
+    answer = 0
+    hi = ["aya", "ye", "woo", "ma"]
+    for word in babbling:
+        for s in hi:
+            if s == word[len():len(s)]:
+                 word = word.replace(s,'')
+                 
+        if word == '':          #?으로만 있는문자는 모두 발음이 된다 판단하에 ?을 공백으로 치환후 answer +1
+                 answer += 1         
+    return answer
+# print(solution(["ayaye", "uuuma", "ye", "yemawoo", "ayaa"]))
+print(solution(["aya", "yee", "u", "maa", "wyeoo"]))
+# print(solution(["ayayewoo"]))
 # print(solution(3,12))
 # print(solution(5,15))
 # print(solution(5,5))
