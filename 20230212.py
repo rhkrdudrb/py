@@ -79,25 +79,23 @@ def solution(babbling):
     answer = 0
     hi = ["aya", "ye", "woo", "ma"]
     for word in babbling:
-        for s in hi:
+        while len(word) > 0:
             if word[:3] == 'aya':
-                word = word.replace(s,'',len(word[:3]))
-                print(word)
+                word = word.replace('aya','',len(word[:3]))
             elif word[:2] == 'ye':
-                word = word.replace(s,'',len(word[:2]))
-                print(word)
+                word = word.replace('ye','',len(word[:2]))
             elif word[:3] == 'woo':
-                word = word.replace(s,'',len(word[:3]))
-                print(word)
+                word = word.replace('woo','',len(word[:3]))
             elif word[:2] == 'ma':
-                word = word.replace(s,'',len(word[:2]))
-                print(word)
-        print("치환된 아이"+word.strip('?'))
-        if word.strip('?') == '':          #?으로만 있는문자는 모두 발음이 된다 판단하에 ?을 공백으로 치환후 answer +1
+                word = word.replace('ma','',len(word[:2]))
+            else:
+                break
+        print("치환된 아이"+word)
+        if len(word) == 0:          #?으로만 있는문자는 모두 발음이 된다 판단하에 ?을 공백으로 치환후 answer +1
                 answer += 1    
     return answer
-# print(solution(["ayaye", "uuuma", "ye", "yemawoo", "ayaa"]))
-print(solution(["aya", "yee", "u", "maa", "wyeoo"]))
+print(solution(["ayaye", "uuuma", "ye", "yemawoo", "ayaa"]))
+# print(solution(["wooaya"]))
 # print(solution(["ayayewoo"]))
 # print(solution(3,12))
 # print(solution(5,15))
