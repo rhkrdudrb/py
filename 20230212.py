@@ -64,16 +64,37 @@
 #         if word.strip('?') == '':          #?으로만 있는문자는 모두 발음이 된다 판단하에 ?을 공백으로 치환후 answer +1
 #                 answer += 1    
 #     return answer
+# def solution(babbling):
+#     answer = 0
+#     hi = ["aya", "ye", "woo", "ma"]
+#     for word in babbling:
+#         for s in hi:
+#             if s == word[len():len(s)]:
+#                  word = word.replace(s,'')
+                 
+#         if word == '':          #?으로만 있는문자는 모두 발음이 된다 판단하에 ?을 공백으로 치환후 answer +1
+#                  answer += 1         
+#     return answer
 def solution(babbling):
     answer = 0
     hi = ["aya", "ye", "woo", "ma"]
     for word in babbling:
         for s in hi:
-            if s == word[len():len(s)]:
-                 word = word.replace(s,'')
-                 
-        if word == '':          #?으로만 있는문자는 모두 발음이 된다 판단하에 ?을 공백으로 치환후 answer +1
-                 answer += 1         
+            if word[:3] == 'aya':
+                word = word.replace(s,'',len(word[:3]))
+                print(word)
+            elif word[:2] == 'ye':
+                word = word.replace(s,'',len(word[:2]))
+                print(word)
+            elif word[:3] == 'woo':
+                word = word.replace(s,'',len(word[:3]))
+                print(word)
+            elif word[:2] == 'ma':
+                word = word.replace(s,'',len(word[:2]))
+                print(word)
+        print("치환된 아이"+word.strip('?'))
+        if word.strip('?') == '':          #?으로만 있는문자는 모두 발음이 된다 판단하에 ?을 공백으로 치환후 answer +1
+                answer += 1    
     return answer
 # print(solution(["ayaye", "uuuma", "ye", "yemawoo", "ayaa"]))
 print(solution(["aya", "yee", "u", "maa", "wyeoo"]))
