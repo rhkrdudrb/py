@@ -18,11 +18,11 @@
 #             #print(answer)
 #     return answer
 # 최빈값 구하기
-def solution(my_string):
-    answer = ''
-    for word in my_string:
-        print(word)
-        if word not in answer:
-            answer +=word
-            #print(answer)
+def solution(array):
+    answer = 0
+    temp = []
+    for i in array:
+        temp.append(array.count(i))
+    print(array)
+    print(temp)
     return answer
