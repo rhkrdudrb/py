@@ -26,7 +26,7 @@ def solution(array):
     maxcount = 0
     for i in temp:
         count = array.count(i)
-        countarray.append(count)
+        countarray.append(count) # 카운트
     print(countarray.index(max(countarray)))
     maxcount = temp[countarray.index(max(countarray))]
     if len(countarray) ==1:
