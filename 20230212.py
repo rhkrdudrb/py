@@ -80,17 +80,14 @@ def solution(babbling):
     hi = ["aya", "ye", "woo", "ma"]
     for word in babbling:
         while len(word) > 0:
-            if word[:3] == 'aya':
-                word = word.replace('aya','',len(word[:3]))
-            elif word[:2] == 'ye':
-                word = word.replace('ye','',len(word[:2]))
-            elif word[:3] == 'woo':
-                word = word.replace('woo','',len(word[:3]))
-            elif word[:2] == 'ma':
-                word = word.replace('ma','',len(word[:2]))
-            else:
-                break
-        print("치환된 아이"+word)
+            changed = False
+            for h in hi:
+                if word[:len(h)] == h:
+                    word = word[len(h):]
+                    changed = True
+                    break
+            if not changed:
+                 break            
         if len(word) == 0:          #?으로만 있는문자는 모두 발음이 된다 판단하에 ?을 공백으로 치환후 answer +1
                 answer += 1    
     return answer
