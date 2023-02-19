@@ -21,20 +21,19 @@
 def solution(array):
     answer = 0
     count = 0
-    countarray = []
-    temp = list(set(array))
-    maxcount = 0
-    for i in temp:
+    countarray = []         
+    temp = list(set(array)) # 리스트의 집합(중복허용 x)
+    maxcount = 0            # 최빈값
+    for i in temp:          # array의 집합의 갯수구함
         count = array.count(i)
-        countarray.append(count) # 카운트
-    print(countarray.index(max(countarray)))
-    maxcount = temp[countarray.index(max(countarray))]
-    if len(countarray) ==1:
-        return maxcount
+        countarray.append(count) 
+    print(temp)
     print(countarray)
-    countarray = [item for item in countarray if item == max(countarray)] #리스트 컴프리헨션 이용하기
-    print(countarray)
-    if len(countarray) >1:
+    maxcount = temp[countarray.index(max(countarray))] #array의 집합의 갯수의 인덱스 구해서 temp의 최빈값 구함
+    if len(countarray) ==1: 
+        return maxcount 
+    countarray = [item for item in countarray if item == max(countarray)] #max값 만 추출
+    if len(countarray) >1: # 최빈값 2개면 -1 return
         return -1  
     return maxcount
 print(solution([1, 2, 3, 3, 3, 4]))
