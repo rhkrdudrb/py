@@ -37,19 +37,20 @@ def solution(my_string):
 # [1,2,3,3,4]
 # {1: 0}
 def solution2(array):
+    answer = 0
     num2cnt = defaultdict(int)
     for num in array:
         num2cnt[num] += 1
     # max(num2cnt.values()) # [1,1,2,1]
     numkey = list(num2cnt.keys())
-    numvalue = max(num2cnt.values())
-    print(numkey)
-    print(numvalue)
-    if len(num2cnt.values()) == 1:   # [1,1,2,1]
-        return max(num2cnt.values())
-    if len(max(num2cnt.values)) > 1:
+    numvalue = list(num2cnt.values())
+    numvaluemax = [num for num in numvalue if num == max(numvalue)]
+    print(numvaluemax)
+    if len(numkey) == 1:  
+        return numvalue
+    if len(numvaluemax) > 1: #최빈값 2개
         return -1
-    return
+    return numvaluemax
     # num2cnt # {1: 1, 2:1, 3:2, 4:1}
     
     # answer = 0
