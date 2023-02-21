@@ -10,11 +10,18 @@
 
 # 두 수의 곱중 최댓값은 31 * 24 = 744 입니다.
 def solution(numbers)
-    # max(numbers) 이거 안됨..?
     answer = numbers.sort()[-1] #최고값
     nummax = numbers.sort()[-2] #두번째값
     return answer * nummax
-end
+#sort 쓰지않고 풀이
+def solution(numbers):
+    answer = max(numbers)   #가장큰값
+    numarray = [num for num in numbers if num != answer]  #가장큰값 버림 이유 max값이 2개이면 런타임에러남
+    townum = [num for num in numarray if num == max(numarray)] #2번째 큰 값
+    if len(numarray) == 0:
+        return max(numbers) * max(numbers)
+    else:
+        return answer * max(townum)
 # 문자열 my_string과 정수 n이 매개변수로 주어질 때, my_string에 들어있는 각 문자를 n만큼 반복한 문자열을 return 하도록 solution 함수를 완성해보세요.
 
 # 제한사항
