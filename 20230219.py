@@ -24,9 +24,8 @@ end
 # 입출력 예
 # my_string	n	result
 # "hello"	3	"hhheeellllllooo"
-def solution(my_string, n)
+def solution(my_string, n):
     answer = ''
-    print(my_string)
-    while len(my_string) >0:
-    return answer
-end
+    for word in my_string:
+        answer += word * n   #문자 * 숫자 된다니 신기함
+    return ''.join(answer)   # 파이썬 리스트를  문자로 바꿔줌
