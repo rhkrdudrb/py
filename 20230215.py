@@ -45,12 +45,14 @@ def solution2(array):
     numkey = list(num2cnt.keys())
     numvalue = list(num2cnt.values())
     numvaluemax = [num for num in numvalue if num == max(numvalue)]
-    print(numvaluemax)
+    for key, value in num2cnt.items():
+        if value == max(numvalue):
+            answer = key
     if len(numkey) == 1:  
-        return numvalue
+        return max(numkey)
     if len(numvaluemax) > 1: #최빈값 2개
         return -1
-    return numvaluemax
+    return answer
     # num2cnt # {1: 1, 2:1, 3:2, 4:1}
     
     # answer = 0
