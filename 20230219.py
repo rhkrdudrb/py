@@ -23,13 +23,22 @@ def solution2(numbers):
     else:
         return answer * max(townum)
 # max 안쓰고 풀기 
-def solution3(numbers):
-    answer = []
-    for i in range(1,len(numbers)):
-        for j in range(len(numbers)):
-            if numbers[j] > numbers[i]:
-                print(numbers[j])
-    return
+def solution(numbers):
+    max = maxnum(numbers) #최고값
+    array = [num for num in numbers if num != max]
+    print(len(array))
+    if len(array) == 0:
+        return max * max 
+    max2 =(maxnum(array))
+    return max * max2
+def maxnum(nummax):
+    if len(nummax) == 0:
+        return nummax[0]
+    max = nummax[0]
+    for num in nummax:
+        if max < num:
+            max = num
+    return max    
 # [1, 2, 3, 4, 5]	20
 # [0, 31, 24, 10, 1, 9]	744
 print(solution3([0, 31, 24, 10, 1, 9]))
