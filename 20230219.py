@@ -31,19 +31,20 @@ def solution2(numbers):
 #         return max * max 
 #     max2 =(maxnum(array))
 #     return max * max2
-def maxnum(nummax):
-    if len(nummax) == 0:
-        return nummax[0]
-    max = nummax[0]
-    min = nummax[0]
-    index = nummax[0]
-    for num in nummax:
+def solution(numbers):
+    max = numbers[0]
+    submax = numbers[0]
+    for num in numbers: 
         if max < num:
+            submax = max
             max = num
-        if min < num and max < min:
-            min = num
-        index = num    
-    return max,min    
+        if submax < num and max > num :
+            submax = num   
+    print(max)
+    print(submax)
+    if len(numbers) == 0:
+        return max * submax
+    return max * submax
 # [1, 2, 3, 4, 5]	20
 # [0, 31, 24, 10, 1, 9]	744
 # print(maxnum([0, 31, 24, 10, 1, 9]))
