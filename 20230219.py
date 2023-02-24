@@ -34,14 +34,18 @@ def solution2(numbers):
 def solution(numbers):
     max = numbers[0]
     submax = numbers[0]
+    index  = 0
     for num in numbers: 
         if max < num:
             submax = max
             max = num
+        elif max == num:  #맨앞이 최고값일때
+            submax = 0
+        if index == num and submax == 0: # 배열의 수가 모두 같을떄
+            submax = num
         if submax < num and max > num :
-            submax = num   
-    print(max)
-    print(submax)
+            submax = num  
+        index = num 
     if len(numbers) == 0:
         return max * submax
     return max * submax
