@@ -32,27 +32,19 @@ def solution2(numbers):
 #     max2 =(maxnum(array))
 #     return max * max2
 def solution(numbers):
-    max = numbers[0]
-    submax = numbers[0]
-    index  = 0
+    max = -1
+    submax = -1             # [3,4,4,2,2]
     for num in numbers: 
         if max < num:
-            submax = max
-            max = num
-        elif max == num:  #맨앞이 최고값일때
-            submax = 0
-        if index == num and submax == 0: # 배열의 수가 모두 같을떄
-            submax = num
-        if submax < num and max > num :
+            submax = max  # 3
+            max = num      # 4
+        elif submax < num <= max: #최고전값
             submax = num  
-        index = num 
-    if len(numbers) == 0:
-        return max * submax
     return max * submax
 # [1, 2, 3, 4, 5]	20
 # [0, 31, 24, 10, 1, 9]	744
 # print(maxnum([0, 31, 24, 10, 1, 9]))
-print(maxnum([1, 2, 3, 4, 5]))
+print(solution([1, 2, 3, 4, 5]))
 # 문자열 my_string과 정수 n이 매개변수로 주어질 때, my_string에 들어있는 각 문자를 n만큼 반복한 문자열을 return 하도록 solution 함수를 완성해보세요.
 
 # 제한사항
@@ -64,6 +56,6 @@ print(maxnum([1, 2, 3, 4, 5]))
 # "hello"	3	"hhheeellllllooo"
 def solution4(my_string, n):
     answer = ''
-    for word in my_string:
-        answer += word * n   #문자 * 숫자 된다니 신기함
-    return ''.join(answer)   # 파이썬 리스트를  문자로 바꿔줌
+    for letter in my_string:
+        answer += letter * n   #문자 * 숫자 된다니 신기함
+    return answer   # 파이썬 리스트를  문자로 바꿔줌

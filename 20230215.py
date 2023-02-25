@@ -36,42 +36,48 @@ def solution(my_string):
 # dictionary : key -> value, letter(한글자) -> count
 # [1,2,3,3,4]
 # {1: 0}
+
+# d = {}
+# d['a'] >> 'a' KeyError
+# d = defaultdict(int)
+# d['a'] = 0
+# [1,1,2,1] 1 -> 3, 2 -> 1
+# [1,1,2,1] 1 -> 1
+# [1,1,2,1] 1 -> 2
+# [1,1,2,1] 1 -> 1, 2 =>1
+# [1,1,2,1] 1 -> 3, 2 =>1
 def solution2(array):
-    answer = 0
+    max_cnt = -1
+    submax_cnt = -1
+    max_num = -1
+    submax_num = -1
     num2cnt = defaultdict(int)
     for num in array:
-        num2cnt[num] += 1
-    # max(num2cnt.values()) # [1,1,2,1]
-    numkey = list(num2cnt.keys())
-    numvalue = list(num2cnt.values())
-    numvaluemax = [num for num in numvalue if num == max(numvalue)]
-    for key, value in num2cnt.items():
-        if value == max(numvalue):
-            answer = key
-    if len(numkey) == 1:  
-        return max(numkey)
-    if len(numvaluemax) > 1: #최빈값 2개
-        return -1
-    return answer
-    # num2cnt # {1: 1, 2:1, 3:2, 4:1}
-    
-    # answer = 0
-    # count = 0
-    # countarray = []         
-    # temp = list(set(array)) # 리스트의 집합(중복허용 x)
-    # maxcount = 0            # 최빈값
-    # for i in temp:          # array의 집합의 갯수구함
-    #     count = array.count(i)
-    #     countarray.append(count) 
-    # print(temp)
-    # print(countarray)
-    # maxcount = temp[countarray.index(max(countarray))] #array의 집합의 갯수의 인덱스 구해서 temp의 최빈값 구함
-    # if len(countarray) ==1: 
-    #     return maxcount 
-    # countarray = [item for item in countarray if item == max(countarray)] #max값 만 추출
-    # if len(countarray) >1: # 최빈값 2개면 -1 return
-    #     return -1  
-    # return maxcount
+        num2cnt[num] += 1   # 1 -> 3, 2 =>1
+    for num,cnt in num2cnt.items():
+        if max < cnt:
+            submax_cnt = max_cnt # -1
+            max_cnt = cnt # 1
+            submax_num = max_num
+            max_num = num
+        elif submax_cnt < cnt <= max_cnt:
+            submax_cnt = cnt # 1
+            submax_num = num
+    if submax_cnt == max_cnt:
+        return -1 
+    return max_num
+
+def solution5(numbers):
+    max = -1
+    submax = -1             # [3,4,4,2,2]
+    for num in numbers: 
+        if max < num:
+            submax = max  # 3
+            max = num      # 4
+        elif submax < num <= max: #최고전값
+            submax = num  
+    return max * submax
+
 print(solution2([1, 2, 3, 3, 3, 4]))
 print(solution2([1, 2, 2, 3, 3, 4])) # -1
 # d = {}
