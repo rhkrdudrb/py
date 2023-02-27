@@ -24,12 +24,22 @@
 def solution(my_string):
     tokens = my_string.split() # [num1, op, num2, op2, num3, op3, ...]
     answer = int(tokens[0])
+    sum = 0
     for i in range(1, len(tokens), 2):
         op = tokens[i]
         num = tokens[i+1]
-        if letter != "+" and letter != "-":
-            sum += int(letter)
+        if op == "+" and i == 1:
+            sum = answer + int(num)
+        elif op == "-" and i == 1:
+            sum = answer - int(num)    
+        elif op == "+":
+            sum = sum + int(num)   
+        elif op == "-":
+            sum = sum - int(num)
     return sum
+print(solution("3 + 4 + 5")) #12
+print(solution("3 + 4 - 5")) #2
+print(solution("1 - 20 + 30 - 4")) #7
 
 # https://school.programmers.co.kr/learn/courses/30/lessons/120866
 # 다음 그림과 같이 지뢰가 있는 지역과 지뢰에 인접한 위, 아래, 좌, 우 대각선 칸을 모두 위험지역으로 분류합니다.
@@ -57,7 +67,7 @@ def solution(my_string):
 # 입출력 예 #3
 
 # 모든 지역에 지뢰가 있으므로 안전지역은 없습니다. 따라서 0을 return합니다.
-def solution(board):
+def solution2(board):
     answer = 0
     print(board)
     return answer
