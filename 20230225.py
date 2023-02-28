@@ -37,9 +37,9 @@ def solution(my_string):
         elif op == "-":
             sum = sum - int(num)
     return sum
-print(solution("3 + 4 + 5")) #12
-print(solution("3 + 4 - 5")) #2
-print(solution("1 - 20 + 30 - 4")) #7
+# print(solution("3 + 4 + 5")) #12
+# print(solution("3 + 4 - 5")) #2
+# print(solution("1 - 20 + 30 - 4")) #7
 
 # https://school.programmers.co.kr/learn/courses/30/lessons/120866
 # 다음 그림과 같이 지뢰가 있는 지역과 지뢰에 인접한 위, 아래, 좌, 우 대각선 칸을 모두 위험지역으로 분류합니다.
@@ -69,5 +69,17 @@ print(solution("1 - 20 + 30 - 4")) #7
 # 모든 지역에 지뢰가 있으므로 안전지역은 없습니다. 따라서 0을 return합니다.
 def solution2(board):
     answer = 0
-    print(board)
+    for x in range(len(board)):
+        for y in range(len(board[x])):
+            if board[x][y] == 1:
+                board[x][y] =2
+            print(board[x][y], end=' ')
+        print()    
     return answer
+print(solution2([[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 0, 0]]))
+# 0, 0, 0, 0, 0
+# 0, 0, 0, 0, 0
+# 0, 1, 1, 1, 0 [x-1][y-1],[x-1][y],[x+1][y+1]
+# 0, 1, 1, 1, 0 [x][y+1],[x][y+1] 
+# 0, 1, 1, 1, 0 [x+1][y-1],[x+1][y],[x+1][y+1] 
+# 
