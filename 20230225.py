@@ -69,18 +69,18 @@ def solution(my_string):
 # 모든 지역에 지뢰가 있으므로 안전지역은 없습니다. 따라서 0을 return합니다.
 def solution2(board):
     answer = 0
-    index = 0
     for x in range(len(board)):
+        index = -1
         for y in range(len(board[x])):
             if board[x][y] == 1:
-                board[x-1][y] = 2 #상
+                board[x-index][y] = 2 #상
                 board[x+1][y] = 2 #하
                 board[x][y-1] = 2 #좌
                 board[x][y+1] = 2 #우
                 board[x+1][y+1] = 2 #우하
                 board[x+1][y-1] = 2 #좌하
-                board[x-1][y-1] = 2 #우상
-                board[x-1][y+1] = 2 #좌상
+                board[x-index][y-1] = 2 #우상
+                board[x-index][y+1] = 2 #좌상
         #     print(board[x][y], end=' ')
         # print() 
     for x in range(len(board)):
@@ -90,7 +90,7 @@ def solution2(board):
             print(board[x][y], end=' ')
         print()    
     return answer
-print(solution2([[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 1, 1, 0], [0, 0, 0, 0, 0]]))
+print(solution2([[1, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]))
 # 0, 0, 0, 0, 0
 # 0, 0, 0, 0, 0
 # 0, 1, 1, 1, 0 
