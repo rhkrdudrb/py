@@ -67,6 +67,7 @@ def solution(my_string):
 # 입출력 예 #3
 
 # 모든 지역에 지뢰가 있으므로 안전지역은 없습니다. 따라서 0을 return합니다.
+
 def solution2(board):
     answer = 0
     for x in range(len(board)):
