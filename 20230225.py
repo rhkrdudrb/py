@@ -24,18 +24,14 @@
 def solution(my_string):
     tokens = my_string.split() # [num1, op, num2, op2, num3, op3, ...]
     answer = int(tokens[0])
-    sum = 0
+    sum = answer
     for i in range(1, len(tokens), 2):
         op = tokens[i]
-        num = tokens[i+1]
-        if op == "+" and i == 1:
-            sum = answer + int(num)
-        elif op == "-" and i == 1:
-            sum = answer - int(num)    
-        elif op == "+":
-            sum = sum + int(num)   
+        num = tokens[i+1]   
+        if op == "+":
+            sum += int(num)   
         elif op == "-":
-            sum = sum - int(num)
+            sum -= int(num)
     return sum
 # print(solution("3 + 4 + 5")) #12
 # print(solution("3 + 4 - 5")) #2
@@ -68,20 +64,22 @@ def solution(my_string):
 
 # 모든 지역에 지뢰가 있으므로 안전지역은 없습니다. 따라서 0을 return합니다.
 
+# [[1,2,3], (0,0) -> (0,1)
+# [4,5,6],]
+# row, col
 def solution2(board):
     answer = 0
-    for x in range(len(board)):
-        index = -1
-        for y in range(len(board[x])):
-            if board[x][y] == 1:
-                board[x-index][y] = 2 #상
-                board[x+1][y] = 2 #하
-                board[x][y-1] = 2 #좌
-                board[x][y+1] = 2 #우
-                board[x+1][y+1] = 2 #우하
-                board[x+1][y-1] = 2 #좌하
-                board[x-index][y-1] = 2 #우상
-                board[x-index][y+1] = 2 #좌상
+    R = len(board)
+    C = len(board[0])
+    for r in range(len(board)):
+        for c in range(len(board[c])):
+            if board[r][c] == 1:
+                for dr, dc in [(-1, 0),(-1,-1),(-1,1),(1,0),(0,-1),(0,1),(1,1),(1,-1)]:
+                    nr= r + dr # nr, nc는 이웃점들의 실제 좌표
+                    nc= c + dc
+                    if 0 <= nr < R and 0 <= nc < C: # board를 넘어가지 않는지 체크
+                        if board[nr][nc] != 1:
+                            board[nr][nc] = 2
         #     print(board[x][y], end=' ')
         # print() 
     for x in range(len(board)):
@@ -91,7 +89,7 @@ def solution2(board):
             print(board[x][y], end=' ')
         print()    
     return answer
-print(solution2([[1, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]))
+# print(solution2([[1, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 1, 1, 0], [0, 0, 0, 0, 0]]))
 # 0, 0, 0, 0, 0
 # 0, 0, 0, 0, 0
 # 0, 1, 1, 1, 0 
@@ -103,3 +101,14 @@ print(solution2([[1, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0,
 # 0, 1, 1, 1, 1 
 # 0, 1, 1, 1, 1
 # 0, 1, 1, 1, 1 
+
+[
+    [1,2,3],
+    [4,5,6],
+    [7,8,9]]
+
+r = c = 0
+for dr, dc in [(-1, 0),(-1,-1),(-1,1),(1,0),(0,-1),(0,1),(1,1),(1,-1)]:
+    nr = r + dr
+    nc = c + dc
+    print(nr, nc)
