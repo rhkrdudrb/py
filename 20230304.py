@@ -24,7 +24,7 @@
 # 글자 -> 카운트
 from collections import defaultdict
 
-def solution1(s):
+def solution(s):
     answer = ''
     let2cnt = defaultdict(int)
     for letter in s:
@@ -33,9 +33,8 @@ def solution1(s):
     for k, v in let2cnt.items():
         if v ==1 :
             answer += k
-    return sorted(answer)
-
-print(solution("hello"))
+    return ''.join(sorted(answer))
+# print(solution("hello"))
 
 # https://school.programmers.co.kr/learn/courses/30/lessons/120894
 # 영어가 싫은 머쓱이는 영어로 표기되어있는 숫자를 수로 바꾸려고 합니다. 문자열 numbers가 매개변수로 주어질 때, 
@@ -57,24 +56,45 @@ print(solution("hello"))
 # 입출력 예 #1
 
 # "onefourzerosixseven"를 숫자로 바꾼 14067를 return합니다.
-def solution(numbers):
-    answer = 0
-    while len(numbers):
-        
-    return answer
-
+def solution1(numbers):
+    numbers = numbers.replace('zero','0')
+    numbers = numbers.replace('one','1')
+    numbers = numbers.replace('two','2')
+    numbers = numbers.replace('three','3')
+    numbers = numbers.replace('four','4')
+    numbers = numbers.replace('five','5')
+    numbers = numbers.replace('six','6')
+    numbers = numbers.replace('seven','7')
+    numbers = numbers.replace('eight','8')
+    numbers = numbers.replace('nine','9')
+    return int(numbers)
+print(solution1("oneoneoneoneonethreesixseveneightnineoneoneoneone"))
 
 # https://school.programmers.co.kr/learn/courses/30/lessons/120821
-def solution3(num_list):
-    answer = []
+# reverse(역순) 함수 씀
+# def solution2(num_list):
+#     num_list.reverse()
+#     return num_list
+# 안씀
+def solution2(num_list):
+    answer = ''
+    for i in range(len(num_list)):
+        answer = num_list[i]
+        num_list[i] = num_list[len(num_list)-i-1]     
+        num_list[len(num_list)-i-1] = answer
+        if num_list[len(num_list)-i-1] == num_list[i]:
+            break
+    print(num_list)
     return answer
+print(solution2([1, 2, 3, 4, 5]))
+
 
 # https://school.programmers.co.kr/learn/courses/30/lessons/120822
-def solution4(my_string):
+def solution3(my_string):
     answer = ''
     return answer
 
 # https://school.programmers.co.kr/learn/courses/30/lessons/120854
-def solution5(strlist):
+def solution4(strlist):
     answer = []
     return answer
