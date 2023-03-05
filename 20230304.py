@@ -3,7 +3,7 @@
 # 한 번만 등장하는 문자가 없을 경우 빈 문자열을 return 합니다.
 
 # 제한사항
-# 0 < s의 길이 < 1,000
+# 0 < s의 길이 < 1,000
 # s는 소문자로만 이루어져 있습니다.
 # 입출력 예
 # s	result
@@ -59,7 +59,8 @@ print(solution("hello"))
 # "onefourzerosixseven"를 숫자로 바꾼 14067를 return합니다.
 def solution(numbers):
     answer = 0
-    while 
+    while numbers >0:
+        
     return answer
 
 
