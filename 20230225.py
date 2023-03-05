@@ -68,7 +68,7 @@ def solution(my_string):
 # [4,5,6],]
 # row, col
 def solution2(board):
-    answer = 0
+    answer = 0 
     R = len(board)
     C = len(board[0])
     for r in range(len(board)):
