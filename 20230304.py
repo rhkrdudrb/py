@@ -99,4 +99,6 @@ def solution3(my_string):
 # https://school.programmers.co.kr/learn/courses/30/lessons/120854
 def solution4(strlist):
     answer = []
+    for letter in strlist:
+        answer.append(len(letter))
     return answer
