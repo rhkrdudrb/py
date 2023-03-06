@@ -92,6 +92,8 @@ print(solution2([1, 2, 3, 4, 5]))
 # https://school.programmers.co.kr/learn/courses/30/lessons/120822
 def solution3(my_string):
     answer = ''
+    for i in range(len(my_string)):
+        answer +=my_string[len(my_string)-i-1] 
     return answer
 
 # https://school.programmers.co.kr/learn/courses/30/lessons/120854
