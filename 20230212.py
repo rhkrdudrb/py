@@ -1,19 +1,21 @@
+# https://school.programmers.co.kr/learn/courses/30/lessons/120923
 # import math
-# def solution(num, total):
-#     avg = total / num 
-#     ceil = avg - num/2
-#     result = []
-#     if num%2 == 1:
-#         start = avg - num // 2 # 5- (5 // 2 2)
-#         for i in range(start, start + num): #start부터 시작해서 start+num의 범위까지
-#             result.append(i)
-#         return result
-#     else:
-#         start = math.ceil(ceil)
-#         for k in range(start, start + num): 
-#             result.append(k)
-#     return result
-# print(solution(4,14))
+def solution2(num, total):
+    result = []
+    avg = total / num
+    if num%2 == 1:
+        start = avg - num // 2 
+        aaaaaa = start + num
+        for i in range(int(start), int(start) + num): 
+            result.append(i)
+        return result
+    else: 
+        ceil = avg - num/2    #3.5 - 2 = 1.5 3.5 앞뒤 2개 씩 
+        start = math.ceil(ceil) # 1.5 올림 시작값:2
+        for u in range(start,start +num): 
+            result.append(u)
+    return result
+print(solution2(3,12))
 
 #     print(temp)
 #     answer = temp
@@ -42,6 +44,7 @@
 # start, end , end - start = num
 # end = start + num
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# https://school.programmers.co.kr/learn/courses/30/lessons/120924
 # def solution(common):
 #     #등차수열 -> 일정하게 더해지는 수열 -> 검색함
 #     #등비수열 -> 일정하게 곱해지는 수열 -> 검색함
@@ -75,7 +78,8 @@
 #         if word == '':          #?으로만 있는문자는 모두 발음이 된다 판단하에 ?을 공백으로 치환후 answer +1
 #                  answer += 1         
 #     return answer
-def solution(babbling):
+# https://school.programmers.co.kr/learn/courses/30/lessons/120956
+ def solution(babbling):
     answer = 0
     hi = ["aya", "ye", "woo", "ma"]
     for word in babbling:
@@ -92,6 +96,25 @@ def solution(babbling):
                 answer += 1    
     return answer
 print(solution(["ayaye", "uuuma", "ye", "yemawoo", "ayaa"]))
+# def solution(babbling):
+#     answer = 0
+#     hi = ["aya", "ye", "woo", "ma"]
+#     for word in babbling:
+#         while len(word) > 0:
+#             if word[:3] == 'aya':
+#                 word = word.replace('aya','',len(word[:3]))
+#             elif word[:2] == 'ye':
+#                 word = word.replace('ye','',len(word[:2]))
+#             elif word[:3] == 'woo':
+#                 word = word.replace('woo','',len(word[:3]))
+#             elif word[:2] == 'ma':
+#                 word = word.replace('ma','',len(word[:2]))
+#             else:
+#                 break
+#         print("치환된 아이"+word)
+#         if len(word) == 0:          #?으로만 있는문자는 모두 발음이 된다 판단하에 ?을 공백으로 치환후 answer +1
+#                 answer += 1    
+#     return answer
 # print(solution(["wooaya"]))
 # print(solution(["ayayewoo"]))
 # print(solution(3,12))
