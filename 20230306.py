@@ -14,3 +14,11 @@ def solution(array):
 # https://school.programmers.co.kr/learn/courses/30/lessons/120893
 
 # https://school.programmers.co.kr/learn/courses/30/lessons/120895
+# 문자열은 인덱스로 접근이 가능하나 인덱스로 수정이 불가하여 list로 바꿈
+# ex) my_string[num1] = my_string[num2] 안됨 
+def solution(my_string, num1, num2):
+    answer = list(my_string)
+    index = answer[num1]
+    answer[num1] = answer[num2]
+    answer[num2] = index
+    return "".join(answer)
