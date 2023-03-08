@@ -131,6 +131,17 @@ print(solution(["ayaye", "uuuma", "ye", "yemawoo", "ayaa"]))
 # time complexity
 # n -> n, n**2, 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# 20230308 복습
+# def solution(babbling):
+#     answer = ["aya", "ye", "woo", "ma"]
+#     cnt = 0
+#     for word in babbling:
+#         for letter in answer:
+#             word = word.replace(letter,"?") 
+#         print(word)
+#         if word.strip("?") == "":
+#             cnt +=1
+#     return cnt
 
 
 
