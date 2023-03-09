@@ -1,5 +1,5 @@
 from collections import defaultdict
-
+# https://school.programmers.co.kr/learn/courses/30/lessons/120826
 # 특정문자 제거하기 replace 안쓰고 다시 풀기
 # 중복된 문자 제거와 유사
 def solution3(my_string, letter):
@@ -8,6 +8,17 @@ def solution3(my_string, letter):
         if word not in letter:
             answer += word
     return answer
+# 20230309 복습
+def solution(my_string, letter):
+    # answer = my_string.replace(letter,'')
+    answer = ''
+    for word in my_string:
+        if word == letter:
+            continue
+        else:
+            answer += word 
+    return answer    
+# https://school.programmers.co.kr/learn/courses/30/lessons/120583
 # my_string	letter	result
 # "abcdef"	"f"	"abcde"
 # "BCBdbe"	"B"	"Cdbe"
@@ -18,6 +29,14 @@ def solution4(array, n):
         if word == n:
             answer +=1
     return answer
+# 20230309 복습
+def solution(array, n):
+    answer = 0
+    for num in array:
+        if num == n:
+            answer +=1
+    return answer
+# https://school.programmers.co.kr/learn/courses/30/lessons/120888
 # 중복된 문자 제거
 def solution(my_string):
     answer = ""
@@ -27,6 +46,15 @@ def solution(my_string):
             answer +=word
             visited.add(word)
     return answer
+print(solution("people"))   
+# 20230309 복습
+def solution(my_string):
+    answer = ''
+    for word in my_string:
+        if word not in answer:
+            answer+=word
+    return answer
+# https://school.programmers.co.kr/learn/courses/30/lessons/120812    
 # 어떤 원소 가 존재하는지 체크하면서 누가 몇개 있는지,순서를 신경 x
 # e in "abcdefghijkl" -> len("abcde")
 # set, e in set("a", "b", "c", )  -> 
@@ -66,7 +94,29 @@ def solution2(array):
     if submax_cnt == max_cnt:
         return -1 
     return max_num
-
+# 20230309 복습 코드가 난잡함..
+from collections import defaultdict
+def solution(array):
+    answer =0
+    key2value = defaultdict(int)
+    for num in array:
+        key2value[num] += 1
+    key =[key for key,value in key2value.items()]    
+    value =[value for key,value in key2value.items()]
+    maxvalue = max(value)
+    
+    if len(value) == 1:
+        return max(key)
+    for val in value:
+        if val == maxvalue:
+            answer +=1
+            if answer >= 2:
+                return -1
+    for key,value in key2value.items():  
+        if value == maxvalue:
+            return key
+    print(maxvalue)    
+    return answer
 def solution5(numbers):
     max = -1
     submax = -1             # [3,4,4,2,2]
