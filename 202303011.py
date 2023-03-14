@@ -18,8 +18,8 @@
 # skip에 포함되는 알파벳은 s에 포함되지 않습니다.
 # 1 ≤ index ≤ 20
 # 입출력 예
-# s	skip	index	result
-# "aukks"	"wbqd"	5	"happy"
+#    s	     skip   index result
+# "aukks"	"wbqd"	  5	  "happy"
 # 입출력 예 설명
 # 입출력 예 #1
 # 본문 내용과 일치합니다.
@@ -30,51 +30,68 @@
 def solution(s, skip, index):
     # 1. ord 활용해서 a -> bcdef
     answer = ''
-    ss =''
     for letter in s:
-        ss = letter
-        answer += oneletter(ss, skip, index)
+        answer += oneletter(letter, skip, index)
+    # oneletter('w', skip, index)    
+    print(answer)    
     return answer
     # 2. bcdef, skip이랑 비교해서 개수 dup를 구해서 
     # 3. bcdef -> cef, replace 쓰지말기
     # dup만큼 1번 다시
-print(solution('aukks', 'wbqd', 5)) #> 'h')
+
 # print(solution("aukks","wbqdgi",5))
 # a, "bcdef" -> "cef" -> "cefgh" -> "cefhi" -> "h"
 # u, 
 def oneletter(letter, skip, index): # 'a'
     answer =''
-    while len(answer) != 5:
+    num = 0
+    while len(answer) != index:
         cnt = 0
         for i in range(index):
-            answer += chr(ord(letter) + i + 1)
+            if ord(letter) +i + 1 > 122 :
+                answer += chr(ord('a')+ num) 
+                num += 1    
+            else:
+                answer += chr(ord(letter) +i +1) 
         tmp = ''
+        num = 0
         for letter in answer:
             if letter in skip:
                 cnt += 1
             else:
                 tmp += letter
         answer = tmp
-        print(answer)
+        num = 0
+        # print(answer)
         for i in range(cnt):
-            answer += chr(ord(letter) +i +1) 
+            if ord(letter) +i + 1 > 122 :
+                answer += chr(ord('a')+ num)
+                num += 1
+            else:
+                answer += chr(ord(letter) +i +1) 
         temp = '' 
         cnt2 = 0 
-        print(answer)    
-        break
-    for letter in answer:
-        if letter in skip:
-            temp += letter
-            cnt2 += 1
-    print(answer)        
+        # print(answer)    
+        for letter in answer:
+            if letter in skip:
+                temp += letter
+                cnt2 += 1
+    num = 0 
     if cnt2 >= 1:
-        result = ''
+        answer = temp
         for i in range(cnt2):
-            result += chr(ord(letter) +i +1)   
+            if ord(letter) +i + 1 > 122 :
+                answer += chr(ord('a')+ num)
+                num += 1
+            else:
+                answer += chr(ord(letter) +i +1)     
         return answer[-1]    
     else:
         return answer[-1]       
 # print(oneletter('a', 'wbqd', 5)) #> 'h')
-        
+print(solution('aukks', 'wbqd', 5)) #> 'h')
+print(solution('zzzzzz', 'abcdefghijklmnopqrstuvwxy', 6))
+
+       
     
         
