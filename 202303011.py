@@ -30,10 +30,23 @@
 def solution(s, skip, index):
     # 1. ord 활용해서 a -> bcdef
     answer = ''
-    for letter in s:
-        answer += oneletter(letter, skip, index)
-    # oneletter('w', skip, index)    
-    print(answer)    
+    answer2 = ''
+    answer3 = ''
+    answer4 = ''
+    # for letter in s:
+    #     answer += oneletter(letter, skip, index)
+    answer = oneletter('a','bef', 3)
+    answer2 = twoletter('a', 3)
+    answer3 = threeletter('bcd', 'bef')
+    answer4 = foreletter('a',answer3[1],'cd')
+    print(answer)
+    print('------------------------')
+    print(answer2)
+    print('------------------------')
+    print(answer3)
+    print('------------------------')
+    print(answer4)
+    print('------------------------')
     return answer
     # 2. bcdef, skip이랑 비교해서 개수 dup를 구해서 
     # 3. bcdef -> cef, replace 쓰지말기
@@ -42,6 +55,42 @@ def solution(s, skip, index):
 # print(solution("aukks","wbqdgi",5))
 # a, "bcdef" -> "cef" -> "cefgh" -> "cefhi" -> "h"
 # u, 
+def twoletter(letter, index):
+    answer =''
+    num = 0
+    while len(answer) != index:
+        cnt = 0
+        for i in range(index):
+            if ord(letter) +i + 1 > 122 :
+                answer += chr(ord('a')+ num) 
+                num += 1    
+            else:
+                answer += chr(ord(letter) +i +1)
+    return answer  
+def threeletter(letter, skip):
+    answer = letter
+    tmp =''
+    cnt = 0
+    for letter in answer:
+        if letter in skip:
+            cnt += 1
+        else:
+            tmp += letter
+    answer = tmp
+    print('123232132321 ',skip)            
+    return [answer,cnt]
+
+def foreletter(letter, cnt,answer):
+    num = 0
+    print('dasdsadsadsad',answer)
+    for i in range(cnt):
+        if ord(letter) +i + 1 > 122 :
+            answer += chr(ord('a')+ num)
+            num += 1
+        else:
+            answer += chr(ord(letter) +i +1)             
+    return answer    
+       
 def oneletter(letter, skip, index): # 'a'
     answer =''
     num = 0
@@ -55,42 +104,48 @@ def oneletter(letter, skip, index): # 'a'
                 answer += chr(ord(letter) +i +1) 
         tmp = ''
         num = 0
+        print(answer)
         for letter in answer:
             if letter in skip:
                 cnt += 1
             else:
                 tmp += letter
         answer = tmp
+        print(answer)
+        print(cnt)
         num = 0
-        # print(answer)
+        print(answer)
         for i in range(cnt):
             if ord(letter) +i + 1 > 122 :
                 answer += chr(ord('a')+ num)
                 num += 1
             else:
                 answer += chr(ord(letter) +i +1) 
-        temp = '' 
-        cnt2 = 0 
-        # print(answer)    
-        for letter in answer:
-            if letter in skip:
-                temp += letter
-                cnt2 += 1
-    num = 0 
-    if cnt2 >= 1:
-        answer = temp
-        for i in range(cnt2):
-            if ord(letter) +i + 1 > 122 :
-                answer += chr(ord('a')+ num)
-                num += 1
-            else:
-                answer += chr(ord(letter) +i +1)     
-        return answer[-1]    
-    else:
-        return answer[-1]       
+                # print(answer)
+    return answer            
+    #     temp = '' 
+    #     cnt2 = 0 
+    #     # print(answer)    
+    #     for letter in answer:
+    #         if letter in skip:
+    #             temp += letter
+    #             cnt2 += 1
+    # num = 0 
+    # if cnt2 >= 1:
+    #     answer = temp
+    #     for i in range(cnt2):
+    #         if ord(letter) +i + 1 > 122 :
+    #             answer += chr(ord('a')+ num)
+    #             num += 1
+    #         else:
+    #             answer += chr(ord(letter) +i +1)     
+    #     return answer[-1]    
+    # else:
+    #     return answer[-1]       
 # print(oneletter('a', 'wbqd', 5)) #> 'h')
-print(solution('aukks', 'wbqd', 5)) #> 'h')
-print(solution('zzzzzz', 'abcdefghijklmnopqrstuvwxy', 6))
+print(solution('aukks', 'wbqd', 5)) #> 'g')
+# print(solution('zzzzzz', 'abcdefghijklmnopqrstuvwxy', 6))
+# print(solution('yy', 'cd', 2))
 
        
     
