@@ -44,54 +44,35 @@ def solution(s, skip, index):
 # print(solution("aukks","wbqdgi",5))
 # a, "bcdef" -> "cef" -> "cefgh" -> "cefhi" -> "h"
 # u, 
-def oneletter(letter, skip, index): # 'a'
-    answer =''
-    num = 0
-    while len(answer) != index:
-        cnt = 0
-        for i in range(index):
-            if ord(letter) +i + 1 > 122 :
-                answer += chr(ord('a')+ num) 
-                num += 1    
+
+def oneletter(letter, skip, index): # 'a', 'wbqd', 5
+    curr = letter # 현재 보고 있는 글자 # 'a'
+    num = 0 # 몇칸 이동했는지 나타내는 카운트 # 0
+    while num != index: # index == num while break #num=5        
+        for letter in skip:    # w b q d w
+            if curr == letter: # a!=w b == b b!=q c!= d d!= w
+                num -= 1       # 1, 0, 1, 2, 3
             else:
-                answer += chr(ord(letter) +i +1) 
-        tmp = ''
-        num = 0
-        for letter in answer:
-            if letter in skip:
-                cnt += 1
-            else:
-                tmp += letter
-        answer = tmp
-        num = 0
-        print(answer)
-        for i in range(cnt):
-            if ord(letter) +i + 1 > 122 :
-                answer += chr(ord('a')+ num)
-                num += 1
-            else:
-                answer += chr(ord(letter) +i +1) 
-        temp = '' 
-        cnt2 = 0 
-        print(answer)    
-        for letter in answer:
-            if letter in skip:
-                temp += letter
-                cnt2 += 1
-    num = 0
-    print(cnt2) 
-    if cnt2 >= 1:
-        answer = temp
-        for i in range(cnt2):
-            if ord(letter) +i + 1 > 122 :
-                answer += chr(ord('a')+ num)
-                num += 1
-            else:
-                answer += chr(ord(letter) +i +1)  
-                print(answer)   
-        return answer[-1]    
-    else:
-        return answer[-1]       
+                num += 1       
+                curr = chr(ord(curr) + 1 ) # b c d
+        
+    return curr
+    # letter가 index만큼 이동한 뒤
+    # return
+
+# curr, num
+# a, 0 - while -> b, 0
+# b, 0 - while -> c, 1
+# c, 1 - while -> d, 1
+# d, 1
+# e, 2
+# f, 3
+# g, 4
+# h, 5
+
+
+        
+        
 # print(oneletter('a', 'wbqd', 5)) #> 'h')
 print(solution('aukks', 'wbqd', 5)) #> 'h')
 # print(solution('zzzzzz', 'abcdefghijklmnopqrstuvwxy', 6))
