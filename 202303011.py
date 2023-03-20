@@ -30,10 +30,11 @@
 def solution(s, skip, index):
     # 1. ord 활용해서 a -> bcdef
     answer = ''
-    # for letter in s:
-    #     answer += oneletter(letter, skip, index)
+    for letter in s:
+        answer += oneletter(letter, skip, index)
     # oneletter('w', skip, index)    
-    answer = oneletter('a', 'bef', 3)
+    # answer = oneletter('a', 'bef', 3)
+    # answer = oneletter('u', 'wbqd', 5)
     print(answer)    
     return answer
     # 1. ord 활용해서 a -> bcdef
@@ -44,18 +45,34 @@ def solution(s, skip, index):
 # print(solution("aukks","wbqdgi",5))
 # a, "bcdef" -> "cef" -> "cefgh" -> "cefhi" -> "h"
 # u, 
-
+# g
 def oneletter(letter, skip, index): # 'a', 'wbqd', 5
     curr = letter # 현재 보고 있는 글자 # 'a'
     num = 0 # 몇칸 이동했는지 나타내는 카운트 # 0
-    while num != index: # index == num while break #num=5        
-        for letter in skip:    # w b q d w
-            if curr == letter: # a!=w b == b b!=q c!= d d!= w
-                num -= 1       # 1, 0, 1, 2, 3
-            else:
-                num += 1       
-                curr = chr(ord(curr) + 1 ) # b c d
-        
+    num2 = 0
+    while num != index: # index == num while break #num=5              
+# curr, num    
+# a, 0
+# b, 0
+# c, 1
+# d, 2
+# e, 2
+# f, 2
+# g, 3  
+        if curr not in skip:
+            num += 1 
+            curr = chr(ord(curr)+1)
+            if curr in skip:
+                num2 = num
+                continue
+            if ord(curr) > 122:
+                curr = 'a'
+              
+        else:
+            curr = chr(ord(curr)+1)
+            if ord(curr) > 122:
+                curr = 'a'          
+    print(num)              
     return curr
     # letter가 index만큼 이동한 뒤
     # return
@@ -68,11 +85,7 @@ def oneletter(letter, skip, index): # 'a', 'wbqd', 5
 # e, 2
 # f, 3
 # g, 4
-# h, 5
-
-
-        
-        
+# h, 5 
 # print(oneletter('a', 'wbqd', 5)) #> 'h')
 print(solution('aukks', 'wbqd', 5)) #> 'h')
 # print(solution('zzzzzz', 'abcdefghijklmnopqrstuvwxy', 6))
