@@ -49,7 +49,6 @@ def solution(s, skip, index):
 def oneletter(letter, skip, index): # 'a', 'wbqd', 5
     curr = letter # 현재 보고 있는 글자 # 'a'
     num = 0 # 몇칸 이동했는지 나타내는 카운트 # 0
-    num2 = 0
     while num != index: # index == num while break #num=5              
 # curr, num    
 # a, 0
@@ -63,7 +62,6 @@ def oneletter(letter, skip, index): # 'a', 'wbqd', 5
             num += 1 
             curr = chr(ord(curr)+1)
             if curr in skip:
-                num2 = num
                 continue
             if ord(curr) > 122:
                 curr = 'a'
@@ -72,6 +70,9 @@ def oneletter(letter, skip, index): # 'a', 'wbqd', 5
             curr = chr(ord(curr)+1)
             if ord(curr) > 122:
                 curr = 'a'          
+    print(num)              
+    return curr
+                      
     print(num)              
     return curr
     # letter가 index만큼 이동한 뒤
