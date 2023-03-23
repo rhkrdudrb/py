@@ -31,26 +31,32 @@ def solution(s, skip, index):
     # 1. ord 활용해서 a -> bcdef
     answer = ''
     for letter in s:
-        answer += oneletter(letter, skip, index)
-    # oneletter('w', skip, index)    
+        answer += oneletter(letter, skip, index) 
     # answer = oneletter('a', 'bef', 3)
-    # answer = oneletter('u', 'wbqd', 5)
     print(answer)    
     return answer
     # 1. ord 활용해서 a -> bcdef
     # 2. bcdef, skip이랑 비교해서 개수 dup를 구해서 
     # 3. bcdef -> cef, replace 쓰지말기
     # dup만큼 1번 다시
-
-# print(solution("aukks","wbqdgi",5))
-# a, "bcdef" -> "cef" -> "cefgh" -> "cefhi" -> "h"
-# u, 
-# g
 def oneletter(letter, skip, index): # 'a', 'wbqd', 5
     curr = letter # 현재 보고 있는 글자 # 'a'
     num = 0 # 몇칸 이동했는지 나타내는 카운트 # 0
-    while num != index: # index == num while break #num=5              
-# curr, num    
+    while num != index:    
+        print(curr,' ',num)
+        print('------------')
+        curr = chr(ord(curr)+1)    
+        if ord(curr) > 122:
+            curr = 'a'
+        if curr not in skip:
+            num += 1
+        else:
+            continue            
+    return curr
+    # letter가 index만큼 이동한 뒤
+    # return
+# bef
+# curr, num
 # a, 0
 # b, 0
 # c, 1
@@ -58,26 +64,8 @@ def oneletter(letter, skip, index): # 'a', 'wbqd', 5
 # e, 2
 # f, 2
 # g, 3  
-        if curr not in skip:
-            num += 1 
-            curr = chr(ord(curr)+1)
-            if curr in skip:
-                continue
-            if ord(curr) > 122:
-                curr = 'a'
-              
-        else:
-            curr = chr(ord(curr)+1)
-            if ord(curr) > 122:
-                curr = 'a'          
-    print(num)              
-    return curr
-                      
-    print(num)              
-    return curr
-    # letter가 index만큼 이동한 뒤
-    # return
 
+# wbqd
 # curr, num
 # a, 0 - while -> b, 0
 # b, 0 - while -> c, 1
@@ -87,6 +75,5 @@ def oneletter(letter, skip, index): # 'a', 'wbqd', 5
 # f, 3
 # g, 4
 # h, 5 
-# print(oneletter('a', 'wbqd', 5)) #> 'h')
 print(solution('aukks', 'wbqd', 5)) #> 'h')
 # print(solution('zzzzzz', 'abcdefghijklmnopqrstuvwxy', 6))
