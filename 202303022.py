@@ -6,10 +6,7 @@ def solution(today, terms, privacies):
     print(terms)
     print(privacies)
     print('-------------------')
-    today = datetime.datetime.strptime(today,"%Y.%m.%d")
-    terms = {i[:1]:today+relativedelta(months=int(i[2:])) for i in terms}
-
-    privacies= {i[11:]:datetime.datetime.strptime(i[:10],"%Y.%m.%d")for i in privacies}
+    today = 12*28*int(today[:4]) +int(today[5:7])*28 +int(today[8:11]) #날짜를 일수로
     for k,v in privacies.items():
         print(terms.keys)
     print(terms)
