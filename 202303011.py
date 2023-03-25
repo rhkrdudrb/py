@@ -46,12 +46,10 @@ def oneletter(letter, skip, index): # 'a', 'wbqd', 5
         print(curr,' ',num)
         print('------------')
         curr = chr(ord(curr)+1)    
-        if ord(curr) > 122:
+        if ord(curr) > ord('z'):
             curr = 'a'
         if curr not in skip:
             num += 1
-        else:
-            continue            
     return curr
     # letter가 index만큼 이동한 뒤
     # return
