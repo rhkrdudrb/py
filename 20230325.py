@@ -3,19 +3,38 @@
 def solution(park, routes):
     #판 만들기
     answer = []
+    op2n ={}
     for letter in park:
         letter = (' ').join(letter)
         letter = letter.split()
         answer.append(letter) 
+    for route in routes:
+        op,n = route.split()
+        op2n[op] = n
+    print(op2n.keys())
     # 2
+    R = len(answer)
+    C = len(answer[0])
     for i in range(len(answer)):
         for j in range(len(answer[i])):
-             print(answer[i][j], end='')
-             if answer[i][j] == 'S':
-                 answer[0][2] ='s'
+            print(answer[i][j], end='')
+            if answer[i][j] == 'S':
+                for op in op2n.keys():
+                    if op == 'E':
+                        for dr, dc in [(0, int(op2n[op]))]:
+                            nr = i + dr
+                            nc = j + dc
+                            if 0 <= nr < R and 0 <= nc < C: # board를 넘어가지 않는지 체크
+                                if answer[nr][nc] != 'X':
+                                    answer[nr][nc] = 2
+                    elif op == 'W':
+                        for dr, dc in [(0, int(op2n[op]))]:
+                            nr = i + dr
+                            nc = j + dc
+                            if 0 <= nr < R and 0 <= nc < C: # board를 넘어가지 않는지 체크
+                                if answer[nr][nc] != 'X':
+                                    answer[nr][nc] = 1                
         print('')
-    # print(routes)
-    # print(answer)
     return -1
 # S : 시작 지점
 # O : 이동 가능한 통로
