@@ -1,30 +1,55 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/172928?language=python3
+
 def solution(park, routes):
     #판 만들기
     answer = []
-    move = {"E":(0,1),"W":(0,-1),"S":(1,0),"N":(-1,0)}
+    op2n ={}
     for letter in park:
         letter = (' ').join(letter)
         letter = letter.split()
         answer.append(letter) 
-    # 시작점
+    for route in routes:
+        op,n = route.split()
+        op2n[op] = n
+    print(op2n.keys())
+    # 2
     R = len(answer)
     C = len(answer[0])
     for i in range(len(answer)):
         for j in range(len(answer[i])):
+            print(answer[i][j], end='')
             if answer[i][j] == 'S':
-                x,y = i,j 
-    #하나씩 돌려가면서 x체크및 박스 크기 벗어나는 곳 체크            
-    for route in routes:
-        dr,dc = move[route[0]] # 동서남북
-        new_r,new_c = x,y # new_r,new_c : 하나씩 돌려가면서 체크 하며 저장할 값
-        for i in range(int(route[2])): 
-            if 0<=new_r+dr<R and 0<=new_c+dc<C and answer[new_r+dr][new_c+dc] != "X":
-                new_r,new_c = new_r+dr,new_c+dc
-            else: # 아니라면 처음 위치로(초기화)
-                new_r,new_c = x,y
-                break
-        x,y = new_r,new_c # 위치 업데이트         
+                x,y = i,j
+                for op in op2n.keys():
+                    if op == 'N':   #북
+                        for dr, dc in [(int(-1 * int(op2n[op])),0)]:
+                            nr = x + dr
+                            nc = y + dc
+                            if 0 <= nr < R and 0 <= nc < C and answer[nr][nc] != 'X': # board를 넘어가지 않는지 체크
+                                x,y = nr,nc
+                                answer[nr][nc] = 1
+                    elif op == 'S': #남
+                         for dr, dc in [(int(op2n[op]),0)]:
+                            nr = x + dr
+                            nc = y + dc
+                            if 0 <= nr < R and 0 <= nc < C and answer[nr][nc] != 'X': # board를 넘어가지 않는지 체크
+                                x,y = nr,nc
+                                answer[nr][nc] = 2
+                    elif op == 'W': #서
+                         for dr, dc in [(0,int(-1 * int(op2n[op])))]:
+                            nr = x + dr
+                            nc = y + dc
+                            if 0 <= nr < R and 0 <= nc < C and answer[nr][nc] != 'X': # board를 넘어가지 않는지 체크
+                                x,y = nr,nc
+                                answer[nr][nc] = 3
+                    elif op == 'E': #동
+                         for dr, dc in [(0, int(op2n[op]))]:
+                            nr = x + dr
+                            nc = y + dc
+                            if 0 <= nr < R and 0 <= nc < C and answer[nr][nc] != 'X': # board를 넘어가지 않는지 체크
+                                x,y = nr,nc
+                                answer[nr][nc] = 4                
+        print('')
     return x,y
 # S : 시작 지점
 # O : 이동 가능한 통로
