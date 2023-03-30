@@ -1,19 +1,20 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/172928?language=python3
 def solution(park, routes):
-    #판 만들기
     answer = []
-    move = {"E":(0,1),"W":(0,-1),"S":(1,0),"N":(-1,0)}
+    move = {"E":(0,1),"W":(0,-1),"S":(1,0),"N":(-1,0)} #동서남북 딕셔너리
+    #판 만들기
     for letter in park:
         letter = (' ').join(letter)
         letter = letter.split()
         answer.append(letter) 
     # 시작점
-    R = len(answer)
-    C = len(answer[0])
     for i in range(len(answer)):
         for j in range(len(answer[i])):
             if answer[i][j] == 'S':
                 x,y = i,j 
+    # 판경계
+    R = len(answer)
+    C = len(answer[0])
     #하나씩 돌려가면서 x체크및 박스 크기 벗어나는 곳 체크            
     for route in routes:
         dr,dc = move[route[0]] # 동서남북
