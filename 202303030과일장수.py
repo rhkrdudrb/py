@@ -38,18 +38,19 @@
 def solution(k, m, score):
     answer = 0    
     score.sort(reverse=True) #내림차순 정렬
-    arry =[]
-    n = 0
-    i = 0
+    arry = []
+    n = 0 # 시작 슬라이스
+    e = m # 끝 슬라이스
+    i = 0 # 배열 길이
     while True:
-        arry.append(score[n:m])
-        n = m 
-        m +=m
-        print(n)
-        print(m)
+        arry.append(score[n:e])
+        n += m 
+        e +=m
         if len(arry[i]) != m:
-            break    
+            del arry[-1]
+            break
         i+=1    
-    print(arry)    
+    for i in range(len(arry)):
+        answer += min(arry[i]) * m
     return answer
 print(solution(3,4,"[1, 2, 3, 1, 2, 3, 1]"))
