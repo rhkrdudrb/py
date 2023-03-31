@@ -39,13 +39,13 @@ def solution(k, m, score):
     answer = 0    
     score.sort(reverse=True) #내림차순 정렬
     arry = []
-    n = 0 # 시작 슬라이스
-    e = m # 끝 슬라이스
+    start = 0 # 시작 슬라이스
+    end = m # 끝 슬라이스
     i = 0 # 배열 길이
     while True:
-        arry.append(score[n:e])
-        n += m 
-        e +=m
+        arry.append(score[start:end])
+        start += m 
+        end +=m
         if len(arry[i]) != m:
             del arry[-1]
             break
