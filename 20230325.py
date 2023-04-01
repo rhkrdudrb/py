@@ -1,32 +1,42 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/172928?language=python3
 def solution(park, routes):
-    answer = []
+    board = create_board(park)         
+    return move_if_possible(routes, board)
+
+def create_board(park):
+    board =[]
+    for s in park: # SOO, 
+        s = list(s)
+        board.append(s)
+    return board
+    
+def create_board_start(board):
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == 'S':
+                return i, j
+
+def move_if_possible(routes,board):
+    r, c = create_board_start(board)
+    R = len(board)
+    C = len(board[0])
     move = {"E":(0,1),"W":(0,-1),"S":(1,0),"N":(-1,0)} #동서남북 딕셔너리
-    #판 만들기
-    for letter in park:
-        letter = (' ').join(letter)
-        letter = letter.split()
-        answer.append(letter) 
-    # 시작점
-    for i in range(len(answer)):
-        for j in range(len(answer[i])):
-            if answer[i][j] == 'S':
-                x,y = i,j 
-    # 판경계
-    R = len(answer)
-    C = len(answer[0])
-    #하나씩 돌려가면서 x체크및 박스 크기 벗어나는 곳 체크            
     for route in routes:
-        dr,dc = move[route[0]] # 동서남북
-        new_r,new_c = x,y # new_r,new_c : 하나씩 돌려가면서 체크 하며 저장할 값
-        for i in range(int(route[2])): 
-            if 0<=new_r+dr<R and 0<=new_c+dc<C and answer[new_r+dr][new_c+dc] != "X":
-                new_r,new_c = new_r+dr,new_c+dc
-            else: # 아니라면 처음 위치로(초기화)
-                new_r,new_c = x,y
+        ewsn,move = route.split()
+        dr,dc = move[ewsn]
+        new_r,new_c = r,c
+        for _ in range(int(move)):
+            new_r, new_c = new_r + dr, new_c + dc
+            if new_r < 0 or new_r == R or new_c < 0 or new_c  == C or board[new_r][new_c] == "X":
+                new_r,new_c = r,c
                 break
-        x,y = new_r,new_c # 위치 업데이트         
-    return x,y
+        r, c = new_r, new_c
+    return r,c
+
+s = "abcd"
+for letter in s:
+    print(letter)
+
 # S : 시작 지점
 # O : 이동 가능한 통로
 # X : 장애물

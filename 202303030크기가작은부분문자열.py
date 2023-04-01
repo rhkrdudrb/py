@@ -26,17 +26,22 @@
 # 입출력 예 #3
 # p의 길이가 2이므로 t의 부분문자열은 "10", "02", "20", "03"이며, 이중 15보다 작거나 같은 숫자는 "10", "02", "03" 이렇게 3개입니다.
 # "02"와 "03"은 각각 2, 3에 해당한다는 점에 주의하세요
+# range(시작숫자, 종료숫자, step)
 def solution(t, p):
-    answer = []
-    reslut = 0
-    for i in range(len(t)):
-        if len(t[i:len(p)+i]) == len(p):
-            answer.append(t[i:len(p)+i])
-    print(answer)
-    for num in answer:
-        if int(num) <= int(p):
-            reslut +=1
-    return reslut
+    result = 0
+    int_p = int(p)
+    for i in range(0,len(t) - len(p) + 1): # 7 - 3 = 4
+        if int(t[i:len(p)+i]) <= int_p:
+            result +=1
+    return result
+
 print(solution("3141592","271"))
 print(solution("500220839878","7"))
 print(solution("10203","15"))
+
+# 3141592
+# 314, 141,415, 159, 592, 92, 2
+# 0,    1, 2,   3,  4,      5,6
+# 3141592
+# 3141, 1415, 4159, 1592, 592...
+# 0,    1,      2,  3,        

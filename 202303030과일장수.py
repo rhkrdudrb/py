@@ -41,16 +41,26 @@ def solution(k, m, score):
     arry = []
     start = 0 # 시작 슬라이스
     end = m # 끝 슬라이스
-    i = 0 # 배열 길이
     while True:
         arry.append(score[start:end])
         start += m 
         end +=m
-        if len(arry[i]) != m:
+        if len(arry[-1]) != m:
             del arry[-1]
             break
-        i+=1    
+    for i in range(0,len(score) - m + 1, m):
+        
     for i in range(len(arry)):
         answer += min(arry[i]) * m
     return answer
 print(solution(3,4,"[1, 2, 3, 1, 2, 3, 1]"))
+    # int_p = int(p)
+    # for i in range(0,len(t) - len(p) + 1): # 7 - 3 = 4
+    #     if int(t[i:len(p)+i]) <= int_p:
+    #         result +=1
+    # 1, 2, 3, 1, 2, 3, 1
+    # 3, 3, 2, 2, 1, 1, 1
+    # [3,3,2,2][1,1,1]
+    #  0        4
+    # k - m
+    #  n 씩 묵으면 전체리스트 길이 - n+1
