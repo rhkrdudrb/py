@@ -29,7 +29,7 @@ def solution(ingredient):
 #     return answer
 # stack
 
-12 1231 31
+# 12 1231 31
 
 
 
