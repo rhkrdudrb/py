@@ -1,16 +1,26 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/161989
 # https://school.programmers.co.kr/learn/courses/30/lessons/161989
+# 시간초과
+# def solution(n, m, section):
+#     answer = 0
+#     y = 0
+#     arry = []
+#     while len(section) > 0:
+#         for i in range(m):
+#             arry.append(section[y] + y +i)
+#         delete = list(set(arry) & set(section))
+#         for dnum in delete:
+#             section.remove(dnum)
+#         answer += 1
+#     return answer
+# 정답
 def solution(n, m, section):
     answer = 0
-    y = 0
-    arry = []
-    while len(section) > 0:
-        for i in range(m):
-            arry.append(section[y] + y +i)
-        delete = list(set(arry) & set(section))
-        for dnum in delete:
-            section.remove(dnum)
-        answer += 1
+    meter = 0
+    for num in section:
+        if num > meter:
+            meter = num+m-1
+            answer+=1
     return answer
 # print(solution(8,4,[2,3,6]))
 # print(solution(5,4,[1,3]))
