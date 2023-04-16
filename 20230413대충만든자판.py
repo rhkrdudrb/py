@@ -7,11 +7,17 @@ def solution(keymap, targets):
             min = float('inf')
             for ss in keymap: # ss: "ABACD", keymap: ["ABACD", "BCEFD"]
                 if min > ss.find(keym) and ss.find(keym) != -1:
-                    min = ss.find(keym)
+                    min = ss.find(keym) +1
             result += min
-        answer.append(result)
+        if result == float('inf'):
+            answer.append(-1)
+        else:
+            answer.append(result)
     return answer
-print(solution(["ABACD","BCEFD"],["ABCD", "BCEFD"])) # [9,4]
+print(solution(["ABACD", "BCEFD"],["ABCD", "AABB"])) # [9,4]
+print(solution(["AA"], ["B"])) # [-1]	
+print(solution(["AGZ", "BSSS"], ["ASA", "BGZ"])) # [4,6]
+	
 # keymap
 # ["ABACD", "BCEFD"]	["ABCD"]
 # A -> 1
