@@ -2,20 +2,20 @@
 def solution(park, routes):
     board = create_board(park)         
     return move_if_possible(routes, board)
-
+#보드 생성
 def create_board(park):
     board =[]
     for s in park: # SOO, 
         s = list(s)
         board.append(s)
     return board
-    
+#보드 시작점     
 def create_board_start(board):
     for i in range(len(board)):
         for j in range(len(board[i])):
             if board[i][j] == 'S':
                 return i, j
-
+#한칸씩이동하면서 보드 장애물 범위 체크
 def move_if_possible(routes,board):
     r, c = create_board_start(board)
     R = len(board)
@@ -36,7 +36,7 @@ def move_if_possible(routes,board):
 s = "abcd"
 for letter in s:
     print(letter)
-
+#한칸씩 이동하면서 장애물 체크 및 보드 범위 체크
 # S : 시작 지점
 # O : 이동 가능한 통로
 # X : 장애물
