@@ -9,7 +9,7 @@ def solution(cards1, cards2, goal):
             queue1.popleft()
             queue1.append("none")
         elif queue2[0] == letter :
-            queue2.popleft()
+            queue2.popleft() #popleft 리스트의 pop(0)이랑 같은 기능이지만 시간은O(1) 리스트의 pop(0) 은 길이에 따라 소요시간 달라질수 있음
             queue2.append("none")
         else:
             return 'No'
