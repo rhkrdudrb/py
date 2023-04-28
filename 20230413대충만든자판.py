@@ -4,7 +4,7 @@ def solution(keymap, targets):
     for target in targets: # targets: ["ABCD", "AABB"], target: "ABCD"
         result = 0
         for keym in target: # keym:"A","B","C","D"
-            min = float('inf')
+            min = float('inf') #무한대 
             for ss in keymap: # ss: "ABACD", keymap: ["ABACD", "BCEFD"]
                 if min > ss.find(keym) and ss.find(keym) != -1:
                     min = ss.find(keym) +1
