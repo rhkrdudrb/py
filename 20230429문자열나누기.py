@@ -14,18 +14,18 @@ def solution(s):
     x_cnt = 0
     other_cnt = 0
     for i,letter in enumerate(list(s)): #x = 1, a =1
-        x = s[0]
-        if letter == x:
+        x = s[0] # x 초기화
+        if letter == x: # x 카운트
             x_cnt += 1
         else:
-            other_cnt += 1
+            other_cnt += 1 # x 아닌 문자 카운트
         if x_cnt == other_cnt:
-            del s[0:int(x_cnt + other_cnt)]
-            # print(s)
+            del s[0:int(x_cnt + other_cnt)] # x와 x아닌 문자 길이 만큼 슬라이싱
             answer += 1
+            # x와 x아닌 문자 카운트 초기화
             x_cnt = 0
             other_cnt = 0
-    if len(s) != 0 :
+    if len(s) != 0 : # 슬라이싱 하고 남은 문자도 카운트
         answer +=1
     return answer
 print(solution("banana"))
