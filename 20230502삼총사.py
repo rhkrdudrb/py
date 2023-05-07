@@ -41,12 +41,21 @@ def solution(number):
     answer = 0
     stratand = len(number)
     for i in range(len(number)):
-        for j in range(1,stratand):
-            for k in range(2,stratand):
+        for j in range(i+1,stratand):
+            for k in range(j+1,stratand):
                 if number[i] + number[j] + number[k] == 0:
                     answer+=1
     return answer
 print(solution([-3, -2, -1, 0, 1, 2, 3]))
 print(solution([-2, 3, 0, 2, -5]))
 print(solution([-1, 1, -1, 1]))
+# i != j, i != k, j != k
+# i < j < k
+# i = 1, j = 4, k = 3
+# [-3, -2, -1, 0, 1, 2, 3]
+# [-2, -2, -1]
+# i = 1, j = 1, k = 2
 
+# i, j
+# i < j
+# N

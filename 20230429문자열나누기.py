@@ -9,28 +9,28 @@
 def solution(s):
     # 첫글자 구하고(x) x와 x아닌문자 길이 구하기
     s = list(s)
-    x = s[0]
+    x = s[0] #b
     answer = 0
     x_cnt = 0
     other_cnt = 0
-    for i,letter in enumerate(list(s)): #x = 1, a =1
-        x = s[0] # x 초기화
-        if letter == x: # x 카운트
-            x_cnt += 1
+    for i,letter in enumerate(s):# b a n
+        if letter == x: # n
+            x_cnt += 1 # 0
         else:
-            other_cnt += 1 # x 아닌 문자 카운트
+            other_cnt += 1 # 1
         if x_cnt == other_cnt:
-            del s[0:int(x_cnt + other_cnt)] # x와 x아닌 문자 길이 만큼 슬라이싱
             answer += 1
-            # x와 x아닌 문자 카운트 초기화
             x_cnt = 0
             other_cnt = 0
-    if len(s) != 0 : # 슬라이싱 하고 남은 문자도 카운트
+            if i != len(s) - 1:
+                x = s[i+1]     
+    if x_cnt != 0 or other_cnt != 0: 
         answer +=1
     return answer
-print(solution("banana"))
+print(solution("ba na na "))
+print(solution("ba na na n")) # 4
 print(solution("abracadabra"))
-print(solution("aaabbaccccabba"))
+print(solution("aaabbacc ccabba"))
 # 입출력 예 #1
 # s="banana"인 경우 ba - na - na와 같이 분해됩니다.
 
