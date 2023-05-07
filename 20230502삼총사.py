@@ -26,15 +26,27 @@
 # 입출력 예 #3
 
 # 삼총사가 될 수 있는 방법이 없습니다.
-from itertools import *
+# from itertools import *
+# def solution(number):
+#     answer = 0
+#     numberList = list(combinations(number, 3))
+#     for num in numberList:
+#         numsum = 0
+#         for num2 in num:
+#             numsum += num2
+#         if numsum == 0:
+#             answer+=1
+#     return answer
 def solution(number):
     answer = 0
-    numberList = list(combinations(number, 3))
-    for num in numberList:
-        numsum = 0
-        for num2 in num:
-            numsum += num2
-        if numsum == 0:
-            answer+=1
+    stratand = len(number)
+    for i in range(len(number)):
+        for j in range(1,stratand):
+            for k in range(2,stratand):
+                if number[i] + number[j] + number[k] == 0:
+                    answer+=1
     return answer
-print(solution([[-3, -2, -1, 0, 1, 2, 3]]))
+print(solution([-3, -2, -1, 0, 1, 2, 3]))
+print(solution([-2, 3, 0, 2, -5]))
+print(solution([-1, 1, -1, 1]))
+
