@@ -1,21 +1,33 @@
 from collections import defaultdict
-
 def solution(X, Y):
+    answer = ''
     xnum2cnt = defaultdict(int)
     ynum2cnt = defaultdict(int)
+    # x 딕셔너리
     for num in X:
         xnum2cnt[num] += 1
+    # y 딕셔너리
     for num in Y:
         ynum2cnt[num] += 1
-    print(xnum2cnt)
-    print(ynum2cnt)
-    num2cnt = {}
-    for key in xnum2cnt:
-        if key in ynum2cnt:
-            num2cnt[key] 
-
-    answer = ''
-    return answer
+    num2cnt = defaultdict(int)
+    # x,y키값이 같고 그중 작은값
+    for num,cnt in xnum2cnt.items():
+        if num in ynum2cnt:
+            if xnum2cnt[num] > ynum2cnt[num]:
+                num2cnt[num] = ynum2cnt[num]
+            else:
+                num2cnt[num] = cnt
+    # 짝꿍이 존재하지 않으면
+    if not num2cnt:
+        return "-1"
+    # 0으로만 구성되어 있다면
+    elif len(num2cnt) == 1 and "0" in num2cnt:
+        return "0"
+    # 그외 정상적인 경우면
+    for num,cnt in num2cnt.items():
+        for num2 in range(cnt):
+            answer+=num
+    return "".join(sorted(answer,reverse=True))
 print(solution("100", "2345"))
 
     # 103 
