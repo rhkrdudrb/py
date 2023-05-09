@@ -1,6 +1,37 @@
+# https://school.programmers.co.kr/learn/courses/30/lessons/131128
 from collections import defaultdict
+# def solution(X, Y):
+#     answer = ''
+#     xnum2cnt = defaultdict(int)
+#     ynum2cnt = defaultdict(int)
+#     # x 딕셔너리
+#     for num in X:
+#         xnum2cnt[num] += 1
+#     # y 딕셔너리
+#     for num in Y:
+#         ynum2cnt[num] += 1
+#     num2cnt = defaultdict(int)
+#     # x,y키값이 같고 그중 작은값
+#     for num,cnt in xnum2cnt.items():
+#         if num in ynum2cnt:
+#             if xnum2cnt[num] > ynum2cnt[num]:
+#                 num2cnt[num] = ynum2cnt[num]
+#             else:
+#                 num2cnt[num] = cnt
+#     # 짝꿍이 존재하지 않으면
+#     if not num2cnt:
+#         return "-1"
+#     # 0으로만 구성되어 있다면
+#     elif len(num2cnt) == 1 and "0" in num2cnt:
+#         return "0"
+#     # 그외 정상적인 경우면
+#     for num,cnt in num2cnt.items():
+#         for num2 in range(cnt):
+#             answer+=num
+#     return "".join(sorted(answer,reverse=True))
+# -----------------------------------시간초과-------------------------------------------------------
 def solution(X, Y):
-    answer = ''
+    temp = []
     xnum2cnt = defaultdict(int)
     ynum2cnt = defaultdict(int)
     # x 딕셔너리
@@ -26,10 +57,24 @@ def solution(X, Y):
     # 그외 정상적인 경우면
     for num,cnt in num2cnt.items():
         for num2 in range(cnt):
-            answer+=num
-    return "".join(sorted(answer,reverse=True))
-print(solution("100", "2345"))
+            temp.append(num)
+    answermin = 0
+    answer = list(map(int, temp))
+    for i in range(len(answer)):
+        if answermin > int(answer[i]):
+            answermin = answer[i]
+            answer[i] = answermin
 
+    for i in range(len(answer)): 
+        end = len(answer) - i 
+        for j in range(1, end): 
+            if answer[j-1] <= answer[j]: # 0번쨰 1번쨰 
+                temp = answer[j-1]
+                answer[j-1] = answer[j]  #0번째가 1번쨰
+                answer[j] = temp         #1번쟤가 0번째
+                
+    return "".join(list(map(str, answer)))
+print(solution("100", "2345"))
     # 103 
     # 310 
 #   x     y
