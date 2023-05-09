@@ -31,7 +31,7 @@ from collections import defaultdict
 #     return "".join(sorted(answer,reverse=True))
 # -----------------------------------시간초과-------------------------------------------------------
 def solution(X, Y):
-    temp = []
+    answer = ''
     xnum2cnt = defaultdict(int)
     ynum2cnt = defaultdict(int)
     # x 딕셔너리
@@ -57,23 +57,15 @@ def solution(X, Y):
     # 그외 정상적인 경우면
     for num,cnt in num2cnt.items():
         for num2 in range(cnt):
-            temp.append(num)
-    answermin = 0
-    answer = list(map(int, temp))
-    for i in range(len(answer)):
-        if answermin > int(answer[i]):
-            answermin = answer[i]
-            answer[i] = answermin
-
+            answer+=num
+    answer = list(answer)
     for i in range(len(answer)): 
-        end = len(answer) - i 
-        for j in range(1, end): 
+        for j in range(1, len(answer) - i ): 
             if answer[j-1] <= answer[j]: # 0번쨰 1번쨰 
                 temp = answer[j-1]
                 answer[j-1] = answer[j]  #0번째가 1번쨰
                 answer[j] = temp         #1번쟤가 0번째
-                
-    return "".join(list(map(str, answer)))
+    return "".join(answer)
 print(solution("100", "2345"))
     # 103 
     # 310 
