@@ -29,7 +29,7 @@ from collections import defaultdict
 #         for num2 in range(cnt):
 #             answer+=num
 #     return "".join(sorted(answer,reverse=True))
-# -----------------------------------시간초과-------------------------------------------------------
+# -----------------------------------sorded 안쓰고-------------------------------------------------------
 def solution(X, Y):
     answer = ''
     xnum2cnt = defaultdict(int)
@@ -54,18 +54,14 @@ def solution(X, Y):
     # 0으로만 구성되어 있다면
     elif len(num2cnt) == 1 and "0" in num2cnt:
         return "0"
-    # 그외 정상적인 경우면
-    for num,cnt in num2cnt.items():
-        for num2 in range(cnt):
-            answer+=num
-    answer = list(answer)
-    for i in range(len(answer)): 
-        for j in range(1, len(answer) - i ): 
-            if answer[j-1] <= answer[j]: # 0번쨰 1번쨰 
-                temp = answer[j-1]
-                answer[j-1] = answer[j]  #0번째가 1번쨰
-                answer[j] = temp         #1번쟤가 0번째
-    return "".join(answer)
+# ---------------------------------------------
+    # 그 외 경우라면
+    for i in range(10,-1,-1):
+        key = str(i)
+        if key in num2cnt:
+            answer += key*num2cnt[key]
+# ---------------------------------------------
+    return answer
 print(solution("100", "2345"))
     # 103 
     # 310 
