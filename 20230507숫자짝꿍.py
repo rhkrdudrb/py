@@ -44,10 +44,11 @@ def solution(X, Y):
     # x,y키값이 같고 그중 작은값
     for num,cnt in xnum2cnt.items():
         if num in ynum2cnt:
-            if xnum2cnt[num] > ynum2cnt[num]:
-                num2cnt[num] = ynum2cnt[num]
-            else:
-                num2cnt[num] = cnt
+            num2cnt[num] = min(xnum2cnt[num], ynum2cnt[num])
+            # if xnum2cnt[num] > ynum2cnt[num]:
+            #     num2cnt[num] = ynum2cnt[num]
+            # else:
+            #     num2cnt[num] = cnt
     # 짝꿍이 존재하지 않으면
     if not num2cnt:
         return "-1"
