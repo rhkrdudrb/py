@@ -26,11 +26,11 @@ def step3(s): #".bat.y.abcdefghijklm"
             answer += s[i]
     return answer
 def step4(s):
-    if s[0] =='.':
-        return s[1:len(s)]
-    if s[-1] =='.':
-        return s[0:len(s) -1 ]
-    return s
+    answer = ''
+    for i,letter in enumerate(s):
+        if (i != 0 or letter != '.') and (i != len(s)-1 or letter != '.') :
+            answer += letter
+    return answer
 def step5(s):
     if len(s) == 0:
         return "a"
