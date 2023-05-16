@@ -1,22 +1,26 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/17682
 def solution(dartResult):
     answer = 0
-    # print(3**1)
-    # print(3**2)
-    # print(3**3)
     for i in range(len(dartResult)):
         if dartResult[i] == 'S':
+            print(dartResult[i-1],'***1  ',int(dartResult[i-1]) ** 1)
             answer +=int(dartResult[i-1]) ** 1
+            
         elif dartResult[i] == 'D':
+            print(dartResult[i-1],'***2  ',int(dartResult[i-1]) ** 2)
             answer +=int(dartResult[i-1]) ** 2
+           
         elif dartResult[i] == 'T':
+            print(dartResult[i-1],'***3  ',int(dartResult[i-1]) ** 3)
             answer +=int(dartResult[i-1]) ** 3
-        elif dartResult[i] == '*':
-            answer +=answer * 2
-        elif dartResult[i] == '#':
-            answer +=answer * -1
-        print(answer)
-# and dartResult[i+1] in '*#'
+            
+        if dartResult[i] == '*':
+            print(answer,'곱하기2')
+            answer *=2
+        if dartResult[i] == '#':
+            print(answer,'곱하기-1')
+            answer *=(-1)
+        
     return answer
 print(solution("1S2D*3T")) #37	11 * 2 + 22 * 2 + 33
 print(solution("1D2S#10S"))#9	12 + 21 * (-1) + 101
