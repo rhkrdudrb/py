@@ -1,6 +1,6 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/17682
 def solution(dartResult):
-    answer = 0
+    answer = []
     dartResultTemp = ''
     dartResultdict = {}
     k=0
@@ -11,29 +11,39 @@ def solution(dartResult):
         else:
             dartResultdict[letter+str(k)] = i
             k+=1
-    temp = []
     j=0
     # S,D,T 제곱
     for i in range(len(dartResultTemp)): 
         if dartResultTemp[i] =='S':
-            temp.append(int(dartResultTemp[j:i]))
+            answer.append(int(dartResultTemp[j:i]))
             j = i +1
         elif dartResultTemp[i] =='D':
-            temp.append(int(dartResultTemp[j:i])**2)
+            answer.append(int(dartResultTemp[j:i])**2)
             j = i +1
         elif dartResultTemp[i] =='T':
-            temp.append(int(dartResultTemp[j:i])**3)
+            answer.append(int(dartResultTemp[j:i])**3)
             j = i +1
-    # 스타상 아차상 계산        
+    # 스타상 아차상 계산   
+    # print(answer)
+    # for i,letter in enumerate(dartResult):
+    #     if letter == '#':
+    #         answer[int(i/2 -1)] *= -1
+    #     elif letter == '*':
+    #         answer[int(i/2 -1)] *= 2
+    #         print(answer[int(i/2 -1)])
+    #         print(answer[int(i/2 -2)])
+    #         print('212121',int(i/2 -1)-1)
+    #         if 0 != answer[int(i/2 -1)]:
+    #             answer[int(i/2 -2)] *= 2
+    # print(answer)
     for i in range(len(dartResultdict)):
         if '#'+str(i) in dartResultdict:
-            temp[int(dartResultdict["#"+str(i)]/2 -1)] *= -1
+            answer[int(dartResultdict["#"+str(i)]/2 -1)] *= -1
         elif '*'+str(i) in dartResultdict:
-            temp[int(dartResultdict["*"+str(i)]/2 -1)] *= 2
+            answer[int(dartResultdict["*"+str(i)]/2 -1)] *= 2
             if 0 <= int(dartResultdict["*"+str(i)]/2 -1) -1:
-                temp[int(dartResultdict["*"+str(i)]/2 -1) -1] *= 2
-    answer = sum(temp)        
-    return answer
+                answer[int(dartResultdict["*"+str(i)]/2 -1) -1] *= 2
+    return sum(answer)
 print(solution("1S2D*3T")) #37	11 * 2 + 22 * 2 + 33
 print(solution("1D2S#10S"))#9	12 + 21 * (-1) + 101
 print(solution("1D2S0T"))  #3	12 + 21 + 03
