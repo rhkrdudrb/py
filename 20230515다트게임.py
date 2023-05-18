@@ -1,23 +1,23 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/17682
 def solution(dartResult):
-    dartResultTemp = ''
+    score = ''
     answer=[]
     # 문자열 분리
     for i,letter in enumerate(dartResult):
         if letter not in '*#':
-            dartResultTemp+=letter
+            score+=letter
     j=0
     # S,D,T 제곱
-    print(dartResultTemp)
-    for i in range(len(dartResultTemp)): 
-        if dartResultTemp[i] =='S':
-            answer.append(int(dartResultTemp[j:i]))
+    print(score)
+    for i in range(len(score)): 
+        if score[i] =='S':
+            answer.append(int(score[j:i]))
             j = i +1
-        elif dartResultTemp[i] =='D':
-            answer.append(int(dartResultTemp[j:i])**2)
+        elif score[i] =='D':
+            answer.append(int(score[j:i])**2)
             j = i +1
-        elif dartResultTemp[i] =='T':
-            answer.append(int(dartResultTemp[j:i])**3)
+        elif score[i] =='T':
+            answer.append(int(score[j:i])**3)
             j = i +1
     # 스타상 아차상 계산   
     for i,letter in enumerate(dartResult):
