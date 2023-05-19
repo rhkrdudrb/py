@@ -1,23 +1,15 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/17682
 def solution(dartResult):
     dartResult = dartResult.replace("10","A")
+    dartdict = {'S':1,'D':2,'T':3}
+    print(dartdict)
     answer=[]
     for i in range(len(dartResult)):
-        if dartResult[i] =='S':
-            if dartResult[i-1] =='A':
-                answer.append(10)
+        if dartResult[i] in 'SDT':
+            if dartResult[i-1] =='A':                
+                answer.append(10**dartdict[dartResult[i]])
             else:
-                answer.append(int(dartResult[i-1]))
-        elif dartResult[i] =='D':
-            if dartResult[i-1] =='A':
-                answer.append(10**2)
-            else:
-                answer.append(int(dartResult[i-1])**2)
-        elif dartResult[i] =='T':
-            if dartResult[i-1] =='A':
-                answer.append(10**3)
-            else:
-                answer.append(int(dartResult[i-1])**3)
+                answer.append(int(dartResult[i-1])**dartdict[dartResult[i]])
         elif dartResult[i] =='*':
             answer[-1] *= 2
             if len(answer) >= 2:
@@ -25,6 +17,8 @@ def solution(dartResult):
         elif dartResult[i] =='#':
             answer[-1] *= -1
     print(answer)
+    return sum(answer)
+#어떤예제가 안되는걸까?
     # 문자열 분리
 #     answer=[]
 #     score
@@ -52,7 +46,6 @@ def solution(dartResult):
     #         answer[int(i/2 -1)] *= 2
     #         if 0 <= int(i/2 -1)-1:
     #             answer[int(i/2 -1)-1] *= 2
-    return sum(answer)
 print(solution("1S2D*3T")) #37	11 * 2 + 22 * 2 + 33
 print(solution("1D2S#10S"))#9	12 + 21 * (-1) + 101
 print(solution("1D2S0T"))  #3	12 + 21 + 03
