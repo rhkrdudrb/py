@@ -13,7 +13,8 @@ def step1 (x_num,y_num,n_num):
     while y_num > answer:
         answer += x_num+n_num
         cnt += 1
-    if answer > y_num:
+    print('일번',answer)
+    if answer != y_num:
         return float("inf")
     return cnt
 def step2 (x_num,y_num):
@@ -22,7 +23,8 @@ def step2 (x_num,y_num):
     while y_num > answer:
         answer += x_num*2
         cnt += 1
-    if answer > y_num:
+    print('이번',answer)
+    if answer != y_num:
         return float("inf")
     return cnt
 def step3 (x_num,y_num):
@@ -31,7 +33,8 @@ def step3 (x_num,y_num):
     while y_num > answer:
         answer += x_num*3
         cnt += 1
-    if answer > y_num:
+    print('삼번',answer)
+    if answer != y_num:
         return float("inf")
     return cnt
 print(solution(10,40,5))   # 2
