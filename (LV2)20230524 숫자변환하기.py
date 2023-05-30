@@ -1,33 +1,28 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/154538
 def solution(x, y, n):
     answer = 0
-    sumarry = []
-    ss= 0
+    sumarry = [x]
+    # ss= 0
     x1 = x
     x2 = x 
     x3 = x
-    while True:
+    while sumarry:
         if y in sumarry:
             return answer
         for _ in range(1):
             if x1+n <= y:
                 sumarry.append(x1+n)
                 x1 +=n
-                print('x1')
             if x2*2 <= y:
                 sumarry.append(x2*2)
                 x2 *=2
-                print('x2')
             if x3*3 <= y:
                 sumarry.append(x3*3)  
                 x3 *=3
-                print('x3')
-        print(sumarry)
+        # print(sumarry)
         answer += 1  
-        print(answer)
-        ss += 1
-        if 3 > len(sumarry):
-            return -1
+        # print(answer)
+        # ss += 1
     return -1
 #     ----------------------------------------------------------
 #     answer = 0
