@@ -1,29 +1,31 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/154538
 def solution(x, y, n):
     answer = 0
-    sumarry = [x]
+    sumarry = []
     # ss= 0
     x1 = x
     x2 = x 
     x3 = x
-    while sumarry:
-        if y in sumarry:
+    while True:
+        if y in sumarry:    # y가 만들어 지는 경우
             return answer
-        for _ in range(1):
-            if x1+n <= y:
-                sumarry.append(x1+n)
-                x1 +=n
-            if x2*2 <= y:
-                sumarry.append(x2*2)
-                x2 *=2
-            if x3*3 <= y:
-                sumarry.append(x3*3)  
-                x3 *=3
-        # print(sumarry)
+        # for num in sumarry: 
+        #      if num > y:
+        #             return -1 
+        if x1+n <= y:
+            sumarry.append(x1+n)
+            x1 +=n
+        if x2*2 <= y:
+            sumarry.append(x2*2)
+            x2 *=2
+        if x3*3 <= y:
+            sumarry.append(x3*3)  
+            x3 *=3
+        print(sumarry)
         answer += 1  
         # print(answer)
         # ss += 1
-    return -1
+   
 #     ----------------------------------------------------------
 #     answer = 0
 #     seq1 = list(step1(x,y,n))
