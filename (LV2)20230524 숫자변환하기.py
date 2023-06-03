@@ -1,31 +1,35 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/154538
 def solution(x, y, n):
-    answer = 0
-    sumarry = []
-    # ss= 0
-    x1 = x
-    x2 = x 
-    x3 = x
-    while True:
-        if y in sumarry:    # y가 만들어 지는 경우
-            return answer
-        # for num in sumarry: 
-        #      if num > y:
-        #             return -1 
-        if x1+n <= y:
-            sumarry.append(x1+n)
-            x1 +=n
-        if x2*2 <= y:
-            sumarry.append(x2*2)
-            x2 *=2
-        if x3*3 <= y:
-            sumarry.append(x3*3)  
-            x3 *=3
-        print(sumarry)
-        answer += 1  
-        # print(answer)
-        # ss += 1
-   
+    visited = set() #4
+    summary = [(0, x)] #[]
+    while summary: # while len(summary) != 0: True
+        count, x = summary.pop(0) # 0 2 1 4
+        if x+n <= y: # 
+            if x + n not in visited:
+                if x + n == y:
+                    return count +1 
+                visited.add(x+n)
+                summary.append((count + 1, x+n))
+        if x*2 <= y:
+            if x*2 not in visited:
+                if x*2 == y:
+                    return count +1
+                visited.add(x*2)
+                summary.append((count + 1, x*2))
+        if x*3 <= y:
+            if x*3 not in visited:
+                if x*3 == y:
+                    return count +1
+                visited.add(x*3)
+                summary.append((count + 1, x*3))
+    return -1 
+
+# pop(0) vs pop()
+
+# [1,2,3,4,5,6] : pop(0) >> O(5)
+# [1,2,3,4,5,6]: pop(0) >> O(1)
+# collections.deque([]) : double ended queue , popleft() == pop(0)
+
 #     ----------------------------------------------------------
 #     answer = 0
 #     seq1 = list(step1(x,y,n))
