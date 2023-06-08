@@ -2,12 +2,14 @@
 def solution(x, y, n):
     visited = set() #4
     summary = [(0, x)] #[]
+    if x==y:
+        return 0
     while summary: # while len(summary) != 0: True
         count, x = summary.pop(0) # 0 2 1 4
         if x+n <= y: # 
             if x + n not in visited:
                 if x + n == y:
-                    return count +1 
+                    return count +1
                 visited.add(x+n)
                 summary.append((count + 1, x+n))
         if x*2 <= y:
@@ -22,7 +24,7 @@ def solution(x, y, n):
                     return count +1
                 visited.add(x*3)
                 summary.append((count + 1, x*3))
-    return -1 
+    return -1  
 
 # pop(0) vs pop()
 
