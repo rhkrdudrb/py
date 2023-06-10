@@ -25,7 +25,6 @@ def solution(x, y, n):
                 visited.add(x*3)
                 summary.append((count + 1, x*3))
     return -1  
-
 # pop(0) vs pop()
 
 # [1,2,3,4,5,6] : pop(0) >> O(5)
@@ -81,3 +80,5 @@ print(solution(2,5,4))     # -1
 # 15 30 45 60
 
 
+
+# https://school.programmers.co.kr/learn/courses/30/lessons/169199

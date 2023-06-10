@@ -33,6 +33,8 @@ def move_if_possible(routes,board):
         r, c = new_r, new_c
     return r,c
 
+# [1,2,3] -> 2
+
 s = "abcd"
 for letter in s:
     print(letter)
