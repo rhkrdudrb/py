@@ -9,6 +9,8 @@ def solution(board):
     for r in range(R):
         for c in range(C):
             if board[r][c] == 'R':
+                while board[nr][nc] != 'G':
+                    
                 for dr,dc in[(-1, 0),(1,0),(0,-1),(0,1)]:
                     nr= r + dr # nr, nc는 이웃점들의 실제 좌표
                     nc= c + dc
