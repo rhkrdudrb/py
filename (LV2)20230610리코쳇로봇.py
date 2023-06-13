@@ -3,7 +3,7 @@
 def solution(board):
     R = len(board)
     C = len(board[0])                
-    r, c = find_start(board)
+    r, c = find_start(board) #시작점
     up = (r-1,c)
     # up: r,c -> 
     for r in range(R):

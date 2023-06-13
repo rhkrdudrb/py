@@ -10,8 +10,8 @@ def solution(board):
             if board[r][c] == 1:
                 for dr,dc in((-1,0),(1,0),(0,-1),(0,1),(-1,-1),(-1,1),(1,-1),(1,1)):
                     nr,nc = r+dr,c+dc
-                    # if nr < R or nr == 0 or nc == 0 or nc < C:
-                    if 0 <= nr < R and 0 <= nc < C:    
+                    if nr < R or nr == 0 or nc == 0 or nc < C:
+                    # if 0 <= nr < R and 0 <= nc < C:    
                         if board[nr][nc] != 1:
                             board[nr][nc] = 2
 
