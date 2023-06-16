@@ -89,28 +89,28 @@ def solution2(board):
             print(board[x][y], end=' ')
         print()    
     return answer
-# def solution(board):
-#     answer = 0 
-#     bigr = len(board)
-#     bigc = len(board[0])
-#     for row in range(len(board)):
-#         for column in range(len(board[row])):
-#             if board[row][column] == 1:
-#                 for dr, dc in [(-1, 0),(-1,-1),(-1,1),(1,0),(0,-1),(0,1),(1,1),(1,-1)]:
-#                     nr= row + dr # nr, nc는 이웃점들의 실제 좌표
-#                     nc= column + dc
-#                     if 0 <= nr < bigr and 0 <= nc < bigc: # board를 넘어가지 않는지 체크
-#                         if board[nr][nc] != 1:
-#                             board[nr][nc] = 2
-#         #     print(board[x][y], end=' ')
-#         # print() 
-#     for x in range(len(board)):
-#         for y in range(len(board[x])):
-#             if board[x][y] < 1:
-#                 answer += 1
-#             print(board[x][y], end=' ')
-#         print()    
-#     return answer
+#20230616 복습
+def solution(board):
+    answer = 0 
+    # 보드 경계 생성
+    R = len(board)
+    C = len(board[0])
+    for r in range(R):
+        print()
+        for c in range(C):
+            if board[r][c] == 1:
+                for dr,dc in [(-1, 0),(-1,-1),(-1,1),(1,0),(0,-1),(0,1),(1,1),(1,-1)]:
+                    nr,nc = r+dr , c +dc
+                    if not(nr < 0 or nr == R or nc < 0 or nc == C):#보드가 넘어감
+                    # if 0 <= nr < R and 0 <= nc < C: # board를 넘어가지 않는지 체크
+                        if board[nr][nc] != 1:
+                            board[nr][nc] = 2
+            print(board[r][c],end='')
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] < 1:
+                answer+=1
+    return answer
 # print(solution2([[1, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 1, 1, 0], [0, 0, 0, 0, 0]]))
 # 0, 0, 0, 0, 0
 # 0, 0, 0, 0, 0
