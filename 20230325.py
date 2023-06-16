@@ -62,3 +62,36 @@ print(solution(["SOO","OOO","OOO"], ["E 2","S 2","W 1"]))
 # OOO
 # OXO
 # OOO
+# 20230616 복습
+def solution(park, routes):
+    #1.보드생성
+    board = cr_board(park)
+    #2.보드시작점
+    r,c = start_point(board)
+    #3.보드경계
+    R = len(board)
+    C = len(board[0])
+    print(r,c)
+    move = {"E":(0,1),"W":(0,-1),"S":(1,0),"N":(-1,0)} #동서남북 딕셔너리
+    for route in routes:
+        ewsn,one_move = route.split()
+        dr,dc = move[ewsn]
+        nr,nc = r,c
+        for _ in range(int(one_move)):
+            nr,nc = nr+dr , nc+dc
+            if nr < 0 or nr == R or nc < 0 or nc == C or board[nr][nc] =='X':
+                nr,nc = r,c
+                break
+        r,c = nr,nc
+    return nr,nc
+def cr_board(park):
+    board = []
+    for s in park:
+        s = list(s)
+        board.append(s)
+    return board
+def start_point(board):
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == "S":
+                return i,j
