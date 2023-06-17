@@ -11,14 +11,12 @@ def possible_impossible(o_cnt,x_cnt,o_victory,x_victory):
         return 0
     if o_cnt + x_cnt ==0: #선공후공 아무도 안둔경우 (나올수있는상황)
         return 1
-    if o_victory == x_victory and o_victory ==0 and x_victory ==0: #아무도 못이긴경우 (나올수있는상황)
+    if o_victory ==0 and x_victory ==0: #아무도 못이긴경우 (나올수있는상황)
         return 1
-    if 0 < o_victory and x_victory ==0: # o이 이긴경우 한줄빙고 (나올수있는상황)!
-        if o_cnt > x_cnt:
-            return 1
-    if 0 < x_victory and o_victory ==0: # x가 이긴경우 한줄빙고 (나올수있는상황)!
-        if x_cnt == o_cnt:
-            return 1
+    if 0 < o_victory and x_victory ==0 and o_cnt > x_cnt: # o이 이긴경우 한줄빙고 (나올수있는상황)!
+        return 1
+    if 0 < x_victory and o_victory ==0 and x_cnt == o_cnt: # x가 이긴경우 한줄빙고 (나올수있는상황)!
+        return 1
     return 0 #(나머지 경우)
 def oxcnt(board):
     o = 0

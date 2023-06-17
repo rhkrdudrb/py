@@ -1,43 +1,65 @@
+from collections import deque
 # https://school.programmers.co.kr/learn/courses/30/lessons/169199
 
+# 숙제: https://school.programmers.co.kr/learn/courses/30/lessons/154540
 def solution(board):
+    # nr,nc 움직인후 r+dr,c+dc
+    # dr,dr 움직일 좌표
+    # r,c 시작점
+    answer = 0
     R = len(board)
-    C = len(board[0])                
-    r, c = find_start(board) #시작점
-    up = (r-1,c)
-    # up: r,c -> 
-    for r in range(R):
-        for c in range(C):
-            if board[r][c] == 'R':
-                while board[nr][nc] != 'G':
-                    
-                for dr,dc in[(-1, 0),(1,0),(0,-1),(0,1)]:
-                    nr= r + dr # nr, nc는 이웃점들의 실제 좌표
-                    nc= c + dc
-                    if 0 <= nr < R and 0 <= nc < C:
-                        print(1)
-                        if board[nr][nc] == '.':
-                            print(nr,nc)
-    for i in range(R):
-        print()
-        for j in range(C):
-            print(board[i][j] ,end='')
-
-    return print("sssssssssssssssss")
-def find_start(board):
+    C = len(board[0])
+    r,c = start_point(board)
+    queue = deque([(0, r, c)])
+    while queue:
+        n, r, c = queue.popleft() # 0,0,6
+        # for dr,dc in [(1,0),(-1,0),(0,-1),(0,1)]: # (0,-1)
+        for dr,dc in [(1,0),(-1,0),(0,-1),(0,1)]: # (0,-1)
+            check = False
+            nr,nc = dr+r,dc+c #(0,5)
+            while 0 <= nr <  R and 0 <= nc < C and board[nr][nc] != 'D': #안나가면
+                # nr,nc = r + dr,c + dc
+                r,c = r + dr,c + dc
+                check = True
+                break
+                # if c - nc == 1: #왼쪽 dr,dc = (0,-1)
+                # if c - nc == -1: #오른쪽 dr,dc = (0,1)
+                #     r,c = r + dr ,c+dc 
+                # if r - nr == 1: #위쪽 dr,dc = (-1,0)
+                #     r,c = r+dr,c + dc
+                # if r - nr == -1: #아래쪽 dr,dc = (1,0)
+                #     r,c = r+dr,c + dc   
+            if check:
+                queue.append((n + 1, r, c)) #(1,1,6)
+                print(queue)
+                if board[r][c]=='G':
+                    return n + 1
+        break
+    return -1
+def start_point(board):
     for i in range(len(board)):
         for j in range(len(board[i])):
             if board[i][j] == 'R':
                 return i,j
+
+# lst = [1,2,3,4,5]
+# lst.pop(0) # O(n)
+# queue = deque([(1, 상), (2, 좌), (2, 하, (3, ))])
+
 # ...D..R
 # .D.G...
 # ....D.D
 # D....D.
 # ..D....
+
+# queue = [(1,1,6),(2,0,6),(2,1,4)]
+# 1,0,4
+# bfs: breadth first search
+
 print(solution(["...D..R", ".D.G...", "....D.D", "D....D.", "..D...."]))
 # ["...D..R", ".D.G...", "....D.D", "D....D.", "..D...."]	7
 # [".D.R", "....", ".G..", "...D"]	-1
-
+# https://school.programmers.co.kr/learn/courses/30/lessons/154540
 "...D..."
 ".D.G.R."
 "....D.D"
