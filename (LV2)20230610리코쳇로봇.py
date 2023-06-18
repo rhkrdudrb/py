@@ -9,9 +9,15 @@ def solution(board):
     R = len(board)
     C = len(board[0])
     r,c = start_point(board)
+    print(R)
+    print(C)
     queue = deque([(0, r, c)])
     dist = [[987654321 for _ in range(C)] for _ in range(R)]
-    ss= 0
+    for i in range(R):
+         print()
+         for j in range(C):
+              print(dist[i][j])
+    
     while queue:
         n, r, c = queue.popleft() # 0,0,6
         if board[r][c]=='G':
@@ -33,13 +39,12 @@ def solution(board):
             if check:
                 if dist[nr][nc] > c+1:
                     dist[nr][nc] = c+1
-                    queue.append((n + 1, nr, nc)) #(1,1,6)
-                    print(queue)     
+                    queue.append((n + 1, nr, nc)) #(1,1,6)   
     return -1
 def start_point(board):
     for i in range(len(board)):
         for j in range(len(board[i])):
             if board[i][j] == 'R':
                 return i,j
-# print(solution(["...D..R", ".D.G...", "....D.D", "D....D.", "..D...."]))
-print(solution([".D.R", "....", ".G..", "...D"]))
+print(solution(["...D..R", ".D.G...", "....D.D", "D....D.", "..D...."]))
+# print(solution([".D.R", "....", ".G..", "...D"]))
