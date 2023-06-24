@@ -12,31 +12,24 @@ def solution(maps):
     C = len(board[0])
     check_set= set()
     queue = deque([()])
-    n_sum = 0
     for i in range(R):
         for j in range(C):
-            if board[i][j] != 'X':
-                if(i,j) not in check_set:
-                    queue = deque([(i, j)])
-                    while queue:
-                        check = True
-                        r, c = queue.popleft()
-                        for dr,dc in [(-1,0),(1,0),(0,1),(0,-1)]: # (0,-1) #상,하,우,좌
-                            nr,nc = r+dr , c+dc #(0,5)
-                            if 0 <= nr <  R and 0 <= nc < C and board[nr][nc] != 'X': #안나가면
-                                check = False
-                                if (nr,nc) not in check_set:
-                                    n_sum += int(board[nr][nc])
-                                    queue.append((nr, nc)) #(1,1,6)   
-                                    check_set.add((nr,nc))
-                        if check:
-                            n_sum = int(board[i][j])
-                    answer.append(n_sum)
-                    n_sum = 0
+            if board[i][j] != 'X' and (i,j) not in check_set:
+                n_sum = int(board[i][j])
+                check_set.add((i, j))
+                queue = deque([(i, j)])
+                while queue:
+                    r, c = queue.popleft()
+                    for dr,dc in [(-1,0),(1,0),(0,1),(0,-1)]: # (0,-1) #상,하,우,좌
+                        nr,nc = r , c #(0,5)
+                        if 0 <= nr+dr <  R and 0 <= nc+dc < C and board[nr+dr][nc+dc] != 'X' and (nr,nc) not in check_set:
+                            n_sum += int(board[nr][nc])
+                            check_set.add((nr,nc))
+                            queue.append((nr, nc)) #(1,1,6)   
+                answer.append(n_sum)
     if len(answer) != 0 :
         return sorted(answer)
-    else:
-        return [-1]
+    return [-1]
 # -----------------------------print 있음 ----------------------------------------
 from collections import deque
 def solution1(maps):

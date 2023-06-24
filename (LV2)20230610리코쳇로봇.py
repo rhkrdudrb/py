@@ -5,25 +5,20 @@ def solution(board):
     R = len(board)
     C = len(board[0])
     r,c = start_point(board)
-    print(r,c)
     queue = deque([(0,r,c)])
     check_set = set()
     while queue:
         n, r, c = queue.popleft()
-        print(r,c)
         if board[r][c] == 'G':
             return n
         for dr,dc in [(-1,0),(1,0),(0,-1),(0,1)]: #상하좌우
-            check = False
             nr , nc = r, c #현재 좌표
             while 0 <= nr+dr < R and 0 <= nc+dc < C and board[nr+dr][nc+dc] !='D': # 상하좌우가 조건에 해당되면
                 nr += dr #거기 끝까지
                 nc += dc #거기 끝까지
-                check = True
-            if check:
-                if (nr,nc) not in check_set:
-                    queue.append((n+1,nr,nc))
-                    check_set.add((nr,nc))   
+            if (r,c) != (nr,nc) and (nr,nc) not in check_set:
+                queue.append((n+1,nr,nc))
+                check_set.add((nr,nc))   
     return -1
 def start_point(board):
     for i in range(len(board)):
