@@ -1,0 +1,32 @@
+1.재귀는 자신을 계속 호출하는 알고리즘이다
+2, 이게안되면 디바이드앤컨커,다이내믹 프로그래밍 다안됨
+3.디클래러티브 프로그래밍의 감각이필요하다
+하다모녀 된다 해보자
+4. 재귀는 반복문(for)으로도 구현 모두 가능하다 하지만재귀가 가독성이 좋다
+
+https://pythontutor.com/visualize.html#mode=display        파이썬 튜터
+https://www.youtube.com/watch?v=LpMpFHcMwvQ&t=43s 유투브 설명
+def solution(numbers, target):
+    if not numbers: # numbers == []
+        # base case        
+        if target == 0:
+            return 1
+        else:
+            return 0
+    return solution(numbers[1:], target - numbers[0]) + solution(numbers[1:], target + numbers[0])
+
+print(solution([1,1,1], 1))
+(1)
+numbers[1,1,1] target : 1
+(2)
+numbers[1,1] target : 0
+(3)
+numbers[1] target : -1
+(4) 종료조건 2번으로 돌아감
+numbers[] target : -2
+              return : 0
+(5)
+numbers[1] target : 1
+(6) 종료조건
+numbers[] target : 0
+              return : 1
