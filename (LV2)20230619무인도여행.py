@@ -1,4 +1,4 @@
-https://school.programmers.co.kr/learn/courses/30/lessons/154540#qna
+# https://school.programmers.co.kr/learn/courses/30/lessons/154540#qna
 from collections import deque
 def solution(maps):
     answer = []
