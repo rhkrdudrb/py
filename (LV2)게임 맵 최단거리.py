@@ -11,11 +11,12 @@ def solution(maps):
         # print(r,c)
         for dr,dc in [(-1,0),(1,0),(0,-1),(0,1)]:#상하좌우
             nr,nc = r,c
-            if 0 <= nr+dr < R and 0 <= nc+dc < C and maps[nr+dr][nc+dc] != "0" and (nr,nc) not in check:
-                queue.append((nr+dr,nc+dc))
+            if 0 <= nr+dr < R and 0 <= nc+dc < C and maps[nr+dr][nc+dc] != 0 and (nr+dr,nc+dc) not in check:
                 check.add((nr+dr,nc+dc))
+                queue.append((nr+dr, nc+dc)) #(1,1,6)
                 print(nr+dr,nc+dc)
                 answer+=1
     return answer
+# 모든 수를 하는데 최단거리의 조거은 어떡게..? 
 print(solution([[1,0,1,1,1],[1,0,1,0,1],[1,0,1,1,1],[1,1,1,0,1],[0,0,0,0,1]])) #answer 11
 # print(solution([[1,0,1,1,1],[1,0,1,0,1],[1,0,1,1,1],[1,1,1,0,0],[0,0,0,0,1]])) #answer -1
