@@ -15,7 +15,7 @@ def solution(maps):
                 check.add((nr+dr,nc+dc))
                 queue.append((nr+dr, nc+dc)) #(1,1,6)
                 print(nr+dr,nc+dc)
-                answer+=1
+                answer+=1 #answer 값 처리 조건 수정하기 지금 코드는 최단거리가 맞다고함
     return answer
 # 모든 수를 하는데 최단거리의 조거은 어떡게..? 
 print(solution([[1,0,1,1,1],[1,0,1,0,1],[1,0,1,1,1],[1,1,1,0,1],[0,0,0,0,1]])) #answer 11
