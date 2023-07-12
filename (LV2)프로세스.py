@@ -47,3 +47,28 @@ def solution(priorities, location):
             answer+=1   
             if checkpop == 1:
                 return answer
+#------------------------------------------------------------------
+#max 안쓰고 정렬로 푸는중
+from collections import deque
+
+def solution(priorities, location):
+    answer = 0
+    queue = deque(priorities)
+    che_queue = deque(sorted(priorities,reverse=True)) 
+    check = deque([0 for _ in range(len(priorities))])
+    check[location] = 1
+    while queue:
+        priorities = queue.popleft()
+        checkpop = check.popleft()
+        check_queue = che_queue.popleft()
+        answer+=1
+        if queue and priorities < check_queue :
+            queue.append(priorities)
+            check.append(checkpop)
+            che_queue.append(checkpop)
+            print(queue)
+            print(check)
+            print(che_queue)
+        else :
+            if checkpop == 1:
+                return answer
