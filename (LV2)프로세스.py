@@ -72,3 +72,31 @@ def solution(priorities, location):
         else :
             if checkpop == 1:
                 return answer
+#------------------------------------------------------------------
+#max안씀
+from collections import deque
+def solution(priorities, location):
+    answer = 0
+    queue = deque(priorities)                             
+    #check index
+    check = deque([0 for _ in range(len(priorities))])    # 나가는위치 priorities index
+    check[location] = 1                                   # 확인해야할 위치 1 나머지 0
+    #check max
+    check_queue = deque(sorted(priorities,reverse=True))  # 최고값 정렬
+    check_queue_pop = check_queue.popleft()               # 최고값
+    check_queue.append(1)                                 # (check_queue_pop) pop할떄 에러 못잡아서 더미데이터 넣음..
+    while queue:
+        priorities = queue.popleft()                      
+        checkpop = check.popleft()
+        if queue and priorities < check_queue_pop :       # 우선순위가 더 작으면 
+            queue.append(priorities)                      # 뒤로 미룸
+            check.append(checkpop)                        # 인덱스도 같이 미룸
+            continue                                      # 다시위로 안올리면 바로 끝날경우도 있음
+        else : 
+            answer+=1                                     
+            check_queue_pop = check_queue.popleft()       # 우선순위가 크거나 같으니 최고값 pop(여기서 못잡음..)
+        if checkpop == 1:                                 # 확인해야할 index 찾으면 answer return
+            return answer
+print(solution([2, 1, 3, 2],2))        #1
+print(solution([1, 1, 9, 1, 1, 1],0))  #5
+
