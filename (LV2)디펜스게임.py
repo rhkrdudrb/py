@@ -1,29 +1,45 @@
 from heapq import heappush, heappop, heapify
 # https://school.programmers.co.kr/learn/courses/30/lessons/142085
+# ----------------------V0.3--------------------------------
 def solution(n, k, enemy): #n 병사 k 무적권 enemy 라운드
     answer = 0
     # 무적권
-    heap = []
-    temp = []
     for idx, e in enumerate(enemy):
-        if idx <= k: # idx: 0, k: 3
-            heappush(heap,  e) 
-            continue
-        temp.append(e)
-    heap_n = heappop(heap)
-    if n >= heap_n:
-        n-=heap_n
-        answer += 1
-    else:
-        return k
-    for e in temp:
-        if n >= e:
-            n -= e
-            answer+=1
+      if n >= e:
+        n -= e
+        answer+=1
+      else:
+        if k > 0:
+          answer+=1
+          k -= 1
         else:
-            break
-    return answer + k
-# ------------------------------------------------------
+          break
+    return answer
+# ----------------------V0.2--------------------------------
+# def solution(n, k, enemy): #n 병사 k 무적권 enemy 라운드
+#     answer = 0
+#     # 무적권
+#     heap = []
+#     temp = []
+#     for idx, e in enumerate(enemy):
+#         if idx <= k: # idx: 0, k: 3
+#             heappush(heap,  e) 
+#             continue
+#         temp.append(e)
+#     heap_n = heappop(heap)
+#     if n >= heap_n:
+#         n-=heap_n
+#         answer += 1
+#     else:
+#         return k
+#     for e in temp:
+#         if n >= e:
+#             n -= e
+#             answer+=1
+#         else:
+#             break
+#     return answer + k
+# ----------------------V0.1--------------------------------
 # def solution(n, k, enemy): #n 병사 k 무적권 enemy 라운드
 #     answer = 0
 #     # 무적권
