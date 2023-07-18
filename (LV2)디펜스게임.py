@@ -1,5 +1,20 @@
 from heapq import heappush, heappop, heapify
 # https://school.programmers.co.kr/learn/courses/30/lessons/142085
+# ----------------------V0.4--------------------------------
+def solution(n, k, enemy): #n 병사 k 무적권 enemy 라운드
+    answer = 0
+    heap = []
+    first_k = k                     # 첫 라운드부터 병사로 못막을때 2, 4, [3, 3, 3, 3]
+    # 무적권
+    for idx, e in enumerate(enemy):
+        heappush(heap,  -e)         # 무적권 push
+        answer += e                 # 라운드 진행여부
+        if answer > n:              # 죽을때
+            if k == 0 :             # 무적권 소진시 해당라운드에서 종료
+                return idx          # 라운드 return
+            k -= 1                  # 무적권 감소
+            answer += heappop(heap) # 전 라운드에서 가장 큰수르 무적권 사용 및 병사 무적권 만큼 (+)
+    return first_k
 # ----------------------V0.3--------------------------------
 def solution(n, k, enemy): #n 병사 k 무적권 enemy 라운드
     answer = 0
