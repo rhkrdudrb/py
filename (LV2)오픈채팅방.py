@@ -3,10 +3,11 @@
 def solution(record):
     answer = []
     dic_list = []
-    dic = {}
+    dic = {} # id2name
     for i,word in enumerate(record):
-        dic_list.append(word.split())                       # record 공백기준 배열 아래 단락 for문 기준
-        list_dic = word.split()                              
+        words = word.split()
+        dic_list.append(words)                       # record 공백기준 배열 아래 단락 for문 기준
+        list_dic = words # key2value
         if list_dic[0] =="Enter" or list_dic[0] =="Change": # 들어오고 변경되는부분일경우만 (떠나는 경우는 들어와야 떠날수 있어서 굳 이 필요업음)
             dic[list_dic[1]] = list_dic[-1]                 # 딕셔너리 - > ID(key) : name(value)
     for i,word in enumerate(dic_list):
