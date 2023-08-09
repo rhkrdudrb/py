@@ -1,5 +1,65 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/67257
 from itertools import *
+from itertools import *
+def solution(expression):
+    toks = parse(expression)
+    orders = set()
+    for word in toks:
+        if word == '*':
+            orders.add(word)
+        elif word == '-':
+            orders.add(word)
+        elif word == '+':
+            orders.add(word)   
+    orders = list(permutations(list(orders), len(orders)))
+    max_list = []
+    for order in orders:
+        max_list.append(abs(evaluation(toks,order)))
+    return max(max_list)
+def evaluation(toks, orders):
+    idx = 0
+    while len(toks) != 1:
+        i = 0
+        while i < len(toks):
+            tok = toks[i]
+            if tok == orders[idx]:
+                tok_result = eval(toks[i-1], tok, toks[i+1])
+                # toks = toks[:i-1] + [toks[i-1], toks[i], toks[i+1]] + toks[i+2:]
+                toks = toks[:i-1] + [tok_result] + toks[i+2:] #[]
+                if orders[idx] in toks:
+                    continue
+                idx +=1
+            i += 1
+    return toks[0]
+def eval(num1, op, num2):
+    if op == '*':
+        return num1 * num2
+    elif op == '-':
+        return num1 - num2
+    else: # op == '+'
+        return num1 + num2
+# '100-200' >> [100, '-', 200]
+def parse(expression):
+    toks = []
+    idx = 0
+    while idx < len(expression):
+        num = 0
+        check = False
+        while idx < len(expression) and expression[idx].isdigit(): # 1
+            num *= 10 # 0 10
+            num += int(expression[idx]) # 1 10
+            idx += 1
+            check = True
+        if num !=0:
+            toks.append(num) # [0,0,0]
+        elif num == 0 and check: # num == 0
+            toks.append(num) # [0,0,0]
+        else: 
+            toks.append(expression[idx]) # ['1','0']
+            idx += 1
+    return toks
+-----------------------------------------------------------------------
+
 def solution(expression):
     toks = parse(expression)
     print(toks)
