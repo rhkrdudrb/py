@@ -1,6 +1,5 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/67257
 from itertools import *
-from itertools import *
 def solution(expression):
     toks = parse(expression)
     orders = set()
@@ -11,11 +10,30 @@ def solution(expression):
             orders.add(word)
         elif word == '+':
             orders.add(word)   
-    orders = list(permutations(list(orders), len(orders)))
-    max_list = []
-    for order in orders:
-        max_list.append(abs(evaluation(toks,order)))
-    return max(max_list)
+    orders = list(permutations(list(orders)))
+    answer = 0
+    for order in permutations(['+', '-', '*']):
+        res = abs(evaluation(toks,order))
+        answer = max(res, answer)
+    return answer
+
+def evaluation(toks, orders): 
+    idx = 0
+    while len(toks) != 1:
+        i = 0
+        while i < len(toks) and toks[idx] in toks:
+            tok = toks[i]
+            if tok == orders[idx]:
+                tok_result = eval(toks[i-1], tok, toks[i+1])
+                toks = toks[:i-1] + [tok_result] + toks[i+2:] #[]
+            else:
+                i += 1
+        idx += 1
+    return toks[0]
+
+# i-1       i               i + 1
+# 숫자      연산자              숫자
+# 숫자      i + 2에 있던 연산자
 def evaluation(toks, orders):
     idx = 0
     while len(toks) != 1:
@@ -25,9 +43,9 @@ def evaluation(toks, orders):
             if tok == orders[idx]:
                 tok_result = eval(toks[i-1], tok, toks[i+1])
                 # toks = toks[:i-1] + [toks[i-1], toks[i], toks[i+1]] + toks[i+2:]
-                toks = toks[:i-1] + [tok_result] + toks[i+2:] #[]
+                toks = toks[:i-1] + [tok_result] + toks[i+2:] #[] 
                 if orders[idx] in toks:
-                    continue
+                    break # continue
                 idx +=1
             i += 1
     return toks[0]
@@ -58,7 +76,7 @@ def parse(expression):
             toks.append(expression[idx]) # ['1','0']
             idx += 1
     return toks
------------------------------------------------------------------------
+# -----------------------------------------------------------------------
 
 def solution(expression):
     toks = parse(expression)
@@ -147,7 +165,7 @@ print(solution("50*6-3*2")) #300
 # nums = [100, 200, 300, 500, 20]
 # ops = [-, *, -, +]
 
------------------------------------------------------------------------
+# -----------------------------------------------------------------------
 
 def solution(expression):
     toks = parse(expression)
@@ -172,8 +190,6 @@ def evaluation(toks, orders):
                 # toks = toks[:i-1] + [toks[i-1], toks[i], toks[i+1]] + toks[i+2:]
                 toks = toks[:i-1] + [tok_result] + toks[i+2:] #[]
                 if orders[idx] in toks:
-                    
-                
             i += 1
     return toks[0]
 
