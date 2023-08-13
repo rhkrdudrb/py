@@ -8,7 +8,7 @@ def solution(prices):
         cnt = 0
         for number in prices:
             cnt += 1
-            if num > number: 
+            if num > number: #계속증가하다 다음것이 더 작으면 break
                 break
         answer.append(cnt)        
     return answer
