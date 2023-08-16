@@ -1,5 +1,30 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/42584
 from collections import deque
+#while 한번만
+def solution(prices):
+    answer = []
+    prices = deque(prices)
+    check = True
+    i = 0
+    while len(prices):
+        if check:
+          num = prices.popleft()
+          cnt = 0
+          i = 0
+          print(num)
+        check = False
+        i+=1  
+        cnt += 1
+        print(prices)
+        if len(prices) < i or len(prices) == i or num > prices[i]: 
+          check = True
+          answer.append(cnt) 
+    return answer
+print(solution([1, 2, 3, 2, 3])) #4 3 1 1 0
+print(solution([1, 2, 3, 4, 5, 2]))#	[5, 4, 3, 2, 1, 0]
+print(solution([2, 2, 3, 1, 5]))#	3, 2, 1, 1, 0
+# -----------------------------------------------------------------------------------------------
+#정답코드
 def solution(prices):
     answer = []
     prices = deque(prices)
