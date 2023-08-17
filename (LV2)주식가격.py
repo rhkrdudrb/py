@@ -8,17 +8,22 @@ def solution(prices):
     i = 0
     while len(prices):
         if check:
-          num = prices.popleft()
-          cnt = 0
-          i = 0
-          print(num)
+            num = prices.popleft()
+            check_prices = deque(prices)
+            i = 0
+        if len(check_prices) == 0:
+            if len(check_prices) == 0 and len(prices) == 0:
+                answer.append(0)
+                break
+            check = True
+            answer.append(i) 
+            continue
+        check_num = check_prices.popleft()
+        i+=1
         check = False
-        i+=1  
-        cnt += 1
-        print(prices)
-        if len(prices) < i or len(prices) == i or num > prices[i]: 
-          check = True
-          answer.append(cnt) 
+        if num > check_num: 
+            check = True
+            answer.append(i)
     return answer
 print(solution([1, 2, 3, 2, 3])) #4 3 1 1 0
 print(solution([1, 2, 3, 4, 5, 2]))#	[5, 4, 3, 2, 1, 0]
