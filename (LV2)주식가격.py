@@ -1,5 +1,26 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/42584
 from collections import deque
+def solution(prices):
+    answer = []
+    nums = [] # (idx, price) []
+    for i in range(len(prices)-1, -1, -1): # 3 2 3 2 1,
+        num = prices[i] # 2
+        while nums and nums[-1][1] >= num: # 
+            nums.pop()
+        if len(nums) == 0:
+            answer.append(len(prices) - i - 1)
+        else:
+            answer.append(nums[-1][0] - i) #[0, 1, 1, 3, 4]
+        nums.append((i,num)) # [(0,1)]
+    return answer
+
+# answer 
+# 가격이 어느 기간동안 안떨어지는지
+print(solution([1, 2, 3, 2, 3])) #4 3 1 1 0, [1,2,3,2,3,2] [5]
+
+print(solution([1, 2, 3, 4, 5, 2]))#	[5, 4, 3, 2, 1, 0]
+print(solution([2, 2, 3, 1, 5]))#	3, 2, 1, 1, 0
+# -----------------------------------------------------------------------------------------------
 #while 한번만
 def solution(prices):
     answer = []
