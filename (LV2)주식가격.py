@@ -12,6 +12,7 @@ def solution(prices):
         else:
             answer.append(nums[-1][0] - i) #[0, 1, 1, 3, 4]
         nums.append((i,num)) # [(0,1)]
+    answer.sort(reverse=True)
     return answer
 
 # answer 
