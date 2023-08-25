@@ -1,6 +1,6 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/42584
 from collections import deque
-#안보고
+#안보고1
 def solution(prices):
     answer = []
     nums =[]
