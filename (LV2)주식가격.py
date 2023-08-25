@@ -27,7 +27,7 @@ def solution(prices):
         else:
             answer.append(nums[-1][0] - i) #[0, 1, 1, 3, 4]
         nums.append((i,num)) # [(0,1)]
-    return answer
+    return answer[::-1]
 
 # answer 
 # 가격이 어느 기간동안 안떨어지는지
