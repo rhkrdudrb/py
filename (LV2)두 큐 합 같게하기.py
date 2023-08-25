@@ -9,7 +9,7 @@ def solution(queue1, queue2):
     if total % 2:
         return -1 
     cnt = 0
-    while sum_q1 != sum_q2 and cnt < 4*n: #같을때까지
+    while sum_q1 != sum_q2 and cnt < 4*n: #같을때까지 4*n 아직도 이해못함
             while sum_q1 > sum_q2:
                 num = queue1.popleft()
                 queue2.append(num)
