@@ -1,14 +1,29 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/42584
 from collections import deque
+#안보고
+def solution(prices):
+    answer = []
+    nums =[]
+    for i in range(len(prices)-1,-1,-1):
+        num = prices[i]
+        while nums and nums[-1][1] >= num:
+            nums.pop()
+        if len(nums) == 0:
+            answer.append(len(prices)-i-1)
+        else:
+            answer.append(nums[-1][0] - i)
+        nums.append((i,num))
+    return answer[::-1]
+# -----------------------------------------------------------------------------------------------
 def solution(prices):
     answer = []
     nums = [] # (idx, price) []
-    for i in range(len(prices)-1, -1, -1): # 3 2 3 2 1,
-        num = prices[i] # 2
-        while nums and nums[-1][1] >= num: # 
+    for i in range(len(prices)-1, -1, -1): # 3 2 3 2 1, #index 거꾸로
+        num = prices[i] # 2 #역순
+        while nums and nums[-1][1] >= num: #  nums null and (idx(인덱스),num(가격)) 표현방식
             nums.pop()
         if len(nums) == 0:
-            answer.append(len(prices) - i - 1)
+            answer.append(len(prices) - i - 1) # prices배열길이 - index - 1 5 - 3 - 1 
         else:
             answer.append(nums[-1][0] - i) #[0, 1, 1, 3, 4]
         nums.append((i,num)) # [(0,1)]
@@ -64,6 +79,6 @@ def solution(prices):
         answer.append(cnt)        
     return answer
 
-print(solution([1, 2, 3, 2, 3])) #4 3 1 1 0
-print(solution([1, 2, 3, 4, 5, 2]))#	[5, 4, 3, 2, 1, 0]
-print(solution([2, 2, 3, 1, 5]))#	3, 2, 1, 1, 0
+# print(solution([1, 2, 3, 2, 3])) #4 3 1 1 0
+# print(solution([1, 2, 3, 4, 5, 2]))#	[5, 4, 3, 2, 1, 0]
+# print(solution([2, 2, 3, 1, 5]))#	3, 2, 1, 1, 0
