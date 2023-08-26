@@ -1,4 +1,54 @@
+from collections import defaultdict
+
 # https://school.programmers.co.kr/learn/courses/30/lessons/118666
+def solution(survey, choices):
+    answer = ''
+    table = defaultdict(int)
+    for i in range(len(choices)):
+        if choices[i] >4:
+            table[survey[i][1]] = choices[i] - 4 # 5 -> 1, 6 -> 2, 7 -> 3
+
+    return answer
+
+#     라이언형(R), 튜브형(T)
+# 2번 지표	콘형(C), 프로도형(F)
+# 3번 지표	제이지형(J), 무지형(M)
+# 4번 지표	어피치형(A), 네오형(N)
+# ["AN", "CF", "MJ", "RT", "NA"]	[5, 3, 2, 7, 5]	"TCMA"
+
+# AN , 5 : N, 1
+# CF, 3 : C, 1
+# MJ, 2 : M, 2
+
+# 매우 비동의	네오형 3점
+# 비동의	네오형 2점
+# 약간 비동의	네오형 1점
+# 모르겠음	어떤 성격 유형도 점수를 얻지 않습니다
+# 약간 동의	어피치형 1점 
+# 동의	어피치형 2점 
+# 매우 동의	어피치형 3점
+0330 ~ 0408 외우기 + 스텍문제 + 성격유형검사 다외우기
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def solution(survey, choices):
     answer = ''
     table = {'R': 0, 'T': 0, 'C': 0, 'F': 0, 'J': 0, 'M': 0, 'A': 0, 'N': 0}
