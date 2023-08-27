@@ -1,25 +1,31 @@
 from collections import defaultdict
-
 # https://school.programmers.co.kr/learn/courses/30/lessons/118666
 def solution(survey, choices):
-    answer = ''
+    answer = ""
+    table_arry =[('R', 'T'), ('C', 'F'), ('J', 'M'), ('A', 'N')]
     table = defaultdict(int)
     for i in range(len(choices)):
+        print(survey[i])
         if choices[i] >4:
-            table[survey[i][1]] = choices[i] - 4 # 5 -> 1, 6 -> 2, 7 -> 3
-
+            table[survey[i][1]] += choices[i] - 4 # 5 -> 1, 6 -> 2, 7 -> 3
+        else:
+            table[survey[i][0]] += 4 - choices[i]  # 1 -> 3, 2 -> 2, 3 -> 1
+    print(table)
+    for i in table_arry:
+        if table[i[0]] >= table[i[1]]:
+            answer += i[0]
+        else:
+            answer += i[1]
+        # print(i[0],'   ',i[1])
     return answer
-
 #     라이언형(R), 튜브형(T)
 # 2번 지표	콘형(C), 프로도형(F)
 # 3번 지표	제이지형(J), 무지형(M)
 # 4번 지표	어피치형(A), 네오형(N)
 # ["AN", "CF", "MJ", "RT", "NA"]	[5, 3, 2, 7, 5]	"TCMA"
-
 # AN , 5 : N, 1
 # CF, 3 : C, 1
 # MJ, 2 : M, 2
-
 # 매우 비동의	네오형 3점
 # 비동의	네오형 2점
 # 약간 비동의	네오형 1점
@@ -27,7 +33,9 @@ def solution(survey, choices):
 # 약간 동의	어피치형 1점 
 # 동의	어피치형 2점 
 # 매우 동의	어피치형 3점
-0330 ~ 0408 외우기 + 스텍문제 + 성격유형검사 다외우기
+# 0330 ~ 0408 외우기 + 스텍문제 + 성격유형검사 다외우기
+print(solution(["AN", "CF", "MJ", "RT", "NA"],[5, 3, 2, 7, 5]))
+print(solution(["TR", "RT", "TR"],[7, 1, 3]))
 
 
 
@@ -48,8 +56,7 @@ def solution(survey, choices):
 
 
 
-
-def solution(survey, choices):
+def solution1(survey, choices):
     answer = ''
     table = {'R': 0, 'T': 0, 'C': 0, 'F': 0, 'J': 0, 'M': 0, 'A': 0, 'N': 0}
     score = {1 : 3, 2 : 2, 3 : 1, 4 : 0, 5 : 1, 6 : 2, 7 : 3}
@@ -80,8 +87,8 @@ def solution(survey, choices):
         else:
             answer += min(table_key[i], table_key[i+1])
     return answer
-print(solution(["AN", "CF", "MJ", "RT", "NA"],[5, 3, 2, 7, 5]))
-print(solution(["TR", "RT", "TR"],[7, 1, 3]))
+# print(solution(["AN", "CF", "MJ", "RT", "NA"],[5, 3, 2, 7, 5]))
+# print(solution(["TR", "RT", "TR"],[7, 1, 3]))
 
     
 # 1번 지표	라이언형(R), 튜브형(T)
