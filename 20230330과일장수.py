@@ -36,24 +36,17 @@
 # [4, 4, 4]	4 x 3 = 12
 # 따라서 (1 x 3 x 1) + (2 x 3 x 1) + (4 x 3 x 2) = 33을 return합니다.
 def solution(k, m, score):
-    answer = 0    
-    score.sort(reverse=True) #내림차순 정렬
-    arry = []
-    start = 0 # 시작 슬라이스
-    end = m # 끝 슬라이스
-    while True:
-        arry.append(score[start:end])
-        start += m 
-        end +=m
-        if len(arry[-1]) != m:
-            del arry[-1]
-            break
-    for i in range(0,len(score) - m + 1, m):
-        
-    for i in range(len(arry)):
-        answer += min(arry[i]) * m
+    answer = 0 
+    score.sort(reverse=True) 
+    arry=[]
+    for i in range(0,len(score),m):
+        arry.append(score[i:m+i])    
+    print(arry)
+    for num in arry:
+        if len(num) == m:
+            answer += min(num) * len(num)
     return answer
-print(solution(3,4,"[1, 2, 3, 1, 2, 3, 1]"))
+print(solution(3,4,[1, 2, 3, 1, 2, 3, 1]))
     # int_p = int(p)
     # for i in range(0,len(t) - len(p) + 1): # 7 - 3 = 4
     #     if int(t[i:len(p)+i]) <= int_p:
