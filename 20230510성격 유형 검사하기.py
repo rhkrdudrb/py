@@ -1,22 +1,19 @@
+#외움 다시 보기
 from collections import defaultdict
-# https://school.programmers.co.kr/learn/courses/30/lessons/118666
 def solution(survey, choices):
-    answer = ""
-    table_arry =[('R', 'T'), ('C', 'F'), ('J', 'M'), ('A', 'N')]
+    answer = ''
     table = defaultdict(int)
+    table_arry = [('R','T'),('C','F'),('J','M'),('A','N')]
     for i in range(len(choices)):
-        print(survey[i])
-        if choices[i] >4:
-            table[survey[i][1]] += choices[i] - 4 # 5 -> 1, 6 -> 2, 7 -> 3
+        if choices[i] > 4 :
+            table[survey[i][1]] += choices[i] - 4
         else:
-            table[survey[i][0]] += 4 - choices[i]  # 1 -> 3, 2 -> 2, 3 -> 1
-    print(table)
+            table[survey[i][0]] += 4 - choices[i] 
     for i in table_arry:
         if table[i[0]] >= table[i[1]]:
             answer += i[0]
         else:
-            answer += i[1]
-        # print(i[0],'   ',i[1])
+            answer += i[1]  
     return answer
 #     라이언형(R), 튜브형(T)
 # 2번 지표	콘형(C), 프로도형(F)
