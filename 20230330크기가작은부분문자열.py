@@ -38,7 +38,17 @@ def solution(t, p):
 print(solution("3141592","271"))
 print(solution("500220839878","7"))
 print(solution("10203","15"))
-
+# def solution(t, p):
+#     answer = []
+#     reslut = 0
+#     for i in range(len(t)):
+#         if len(t[i:len(p)+i]) == len(p):
+#             answer.append(t[i:len(p)+i])
+#     print(answer)
+#     for num in answer:
+#         if int(num) <= int(p):
+#             reslut +=1
+#     return reslut
 # 3141592
 # 314, 141,415, 159, 592, 92, 2
 # 0,    1, 2,   3,  4,      5,6
