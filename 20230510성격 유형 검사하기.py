@@ -1,20 +1,19 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/118666
 #외움 다시 보기
-from collections import defaultdict
 def solution(survey, choices):
     answer = ''
-    table = defaultdict(int)
-    table_arry = [('R','T'),('C','F'),('J','M'),('A','N')]
+    table =  defaultdict(int)
+    table_arry = [('R','T'),('J','M'),('C','F'),('A','N')]
     for i in range(len(choices)):
-        if choices[i] > 4 :
-            table[survey[i][1]] += choices[i] - 4
+        if choices[i] > 4:
+            table[survey[i][1]] += choi ces -4
         else:
-            table[survey[i][0]] += 4 - choices[i] 
+            table[survey[i][1]] += 4 - choices 
     for i in table_arry:
         if table[i[0]] >= table[i[1]]:
             answer += i[0]
         else:
-            answer += i[1]  
+            answer += i[1]
     return answer
 from collections import defaultdict
 def solution(survey, choices):

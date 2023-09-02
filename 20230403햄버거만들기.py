@@ -17,7 +17,15 @@ nums = [1,1,2,3,1,2,3,1] # >> [1,1,2,3]
 nums[:4]
 nums[:-4] #뒤에 4개
 
-
+answer = 0
+nums= []
+for num in range(ingredient):
+    nums.append(num)
+    if num == 1 and len(nums) >= 4:
+        if nums[-4:] ==[1,2,3,1]:
+            answer+=1
+            for _ in range(4):
+                nums.pop
 
 
 
