@@ -32,12 +32,6 @@ for num in range(ingredient):
 
 
 
-
-
-
-
-
-
 # def solution(ingredient):
 #     answer = 0
 #     y=0
