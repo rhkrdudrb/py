@@ -16,7 +16,7 @@ def solution(survey, choices):
     return answer
 def solution(k, m, score):
     answer = 0
-    score.sort(reverse=True)
+    score.sort(reverse=True) # 외우다 보니 계속 까먹음 기억하기
     arry=[]
     for i in range(0,len(score),m):
         arry.append(score[i:i+m])
