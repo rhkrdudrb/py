@@ -1,4 +1,33 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/172928
+#------------------------------재복습------------------------------20230912
+def solution(park, routes):
+  board = cr_board(park)
+  r,c = start_point(board)
+  R = len(board)
+  C = len(board[0])
+  ewns2drdc = {'N': (-1, 0), 'S': (1,0), 'W': (0, -1), 'E': (0,1)}
+  for route in routes:
+    nr,nc = r,c
+    ewns,n = route.split()
+    dr,dc = ewns2drdc[ewns]
+    for _ in range(int(n)):
+      nr,nc = nr+dr,nc+dc
+      if nr < 0 or nr == R or nc < 0 or nc == C or board[nr][nc] == "X":
+        nr,nc = r,c
+        break
+      r,c = nr,nc
+  return nr,nc
+def cr_board(park):
+  board = []
+  for s in park:
+    board.append(list(s))
+  return board
+def start_point(board):
+  for i in range(len(board)):
+    for j in range(len(board[i])):
+      if board[i][j] == "S":
+        return i,j
+# ---------------------------------------------------------------------
 def solution(park, routes):
     board = cr_board(park)
     R = len(board)
