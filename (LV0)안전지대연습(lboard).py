@@ -1,4 +1,4 @@
-# https://school.programmers.co.kr/learn/courses/30/lessons/172928
+# https://school.programmers.co.kr/learn/courses/30/lessons/120866
 def solution(board):
     answer = 0
     # 경계생성
