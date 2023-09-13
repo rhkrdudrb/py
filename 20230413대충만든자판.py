@@ -1,4 +1,19 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/160586
+def solution(keymap, targets):
+    for target in targets:
+        result = 0
+        for keym in target:
+            min = float('inf')
+            for word in keymap:
+                if min > word.find(keym) and word.find(keym) != -1:
+                    min = word.find(keym) + 1
+            result += min 
+        if result == float('inf'):
+            answer.append(-1)
+        else:
+            answer.append(result)
+    return answer
+------------------------------------------------------------------
 from collections import defaultdict
 def solution(keymap, targets):
     answer = []
