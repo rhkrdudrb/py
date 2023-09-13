@@ -146,4 +146,9 @@ print(solution1(["SOO","OOO","OOO"], ["E 2","S 2","W 1"]))
 def solution(board): # [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 1, 1, 0], [0, 0, 0, 0, 0]]
     answer = 0
     return answer
-안전지대랑 공원산책, 카드뭉치, 대충만든자판, 전에했던것들
+# 안전지대랑 공원산책, 카드뭉치, 대충만든자판, 전에했던것들
+https://school.programmers.co.kr/learn/courses/30/lessons/172928 공원산책
+
+https://school.programmers.co.kr/learn/courses/30/lessons/120866 안전지대
+https://school.programmers.co.kr/learn/courses/30/lessons/159994 카드뭉치
+https://school.programmers.co.kr/learn/courses/30/lessons/160586 대충만든자판
