@@ -96,3 +96,76 @@ def solution(numbers):
             answer.append(stack[-1])
         stack.append(num)
     return answer[::-1]
+def solution(park, routes):
+    board = cr_board(park)
+    r,c = start_point(board)
+    R = len(board)
+    C = len(board[0])
+    ewns2drdc = {"N":(-1,0),"S":(1,0),"W":(0,-1),"E":(0,1)}
+    for route in routes:
+        nr,nc = r,c
+        ewns,n = route.split()
+        dr,dc = ewns2drdc[ewns]
+        for _ in range(int(n)):
+            nr,nc = nr+dr,nc+dc
+            if nr < 0 or nr == R or nc < 0 or nc == C or board[nr][nc] == "X":
+                nr,nc = r,c
+                break
+        r,c = nr,nc
+    return nr,nc
+def cr_board(park):
+    board = []
+    for s in park:
+        board.append(list(s))
+    return board
+def start_point(board):
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == "S":
+                return i,j
+def solution(board):
+    answer = 0 
+    R = len(board)
+    C = len(board[0])
+    for r in range(R):
+        for c in range(C):
+            if board[r][c] == 1:
+                for dr,dc in((-1,0),(1,0),(0,-1),(0,1),(-1,-1),(-1,1),(1,-1),(1,1)):
+                    nr,nc = r+dr,c+dc
+                    if not(nr < 0 or nr == R or nc < 0 or nc == C):
+                        if board[nr][nc] != 1:
+                            board[nr][nc] = 2
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] < 1:
+                answer+=1
+    return answer
+from collections import deque
+def solution(cards1, cards2, goal):
+    queue1 = deque(cards1)
+    queue2 = deque(cards2)
+    for letter in goal:
+        if queue1[0] == letter:
+            queue1.popleft()
+            queue1.append('None')
+        elif queue2[0] == letter:
+            queue2.popleft()
+            queue2.append('None')
+        else:
+            return "No"
+    return "Yes"
+def solution(keymap, targets):
+    answer = []
+    for target in targets:
+        result = 0
+        for keym in target:
+            min = float('inf')
+            for word in keymap:
+                if min > word.find(keym) and word.find(keym) != -1:
+                    min = word.find(keym) + 1
+            result += min
+        if result == float('inf'):
+            answer.append(-1)
+        else:
+            answer.append(result)
+    return answer
