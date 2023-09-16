@@ -100,55 +100,81 @@ def solution(prices): # [1, 2, 3, 2, 3]
             answer.append(stack[-1][0] -1)
         stack.append((i,num))
     return answer[::-1]
-
-# https://school.programmers.co.kr/learn/courses/30/lessons/172928
-def solution1(park, routes): # ["SOO","OOO","OOO"], ["E 2","S 2","W 1"]
-    answer =[]
-    board = cr_board(park)
-    r, c = start_point(board)
-    R = len(board)
-    C = len(board[0])
-    ewns2drdc = {'N': (-1, 0), 'S': (1,0), 'W': (0, -1), 'E': (0,1)}
-    for route in routes:
-        nr, nc = r, c # 3,3
-        ewns, n = route.split() # E, 2
-        dr,dc = ewns2drdc[ewns] # 0, 1
-        for _ in range(n): # 2
-            nr,nc = nr+dr,nc+dc
-            if nr < 0 or nr == R or nc < 0 or nc == C or routes[nr][nc] == "X": #보드를 안넘는데 장애물이있으면
-                nr,nc = r,c
-                break
-        r,c = nr, nc
-    return [r, c]
-    # n = -1,0
-    # s = 1,0
-    # w = 0,-1
-    # e = 0,1
-# N : 북쪽으로 주어진 칸만큼 이동합니다. -1,0
-# S : 남쪽으로 주어진 칸만큼 이동합니다. 1,0
-# W : 서쪽으로 주어진 칸만큼 이동합니다. 0,-1
-# E : 동쪽으로 주어진 칸만큼 이동합니다. 0,1
-def cr_board(park):
-    return [[letter for letter in s] for s in park]
-    board = [] # ["S", "O", "O"], [["S", "O", "O"]]
-    for s in park: # s : "SOO" > ["S", "O", "O"]
-        board.append([letter for letter in s]) # ["S", "O", "O"]
-        # board.append(list(s))
-    return board
-def start_point(board):
-    for i in range(len(board)):
-        for j in range(len(i)):
-            if board[i][j] == "S":
-                return i,j
-print(solution1(["SOO","OOO","OOO"], ["E 2","S 2","W 1"]))
-
 # https://school.programmers.co.kr/learn/courses/30/lessons/120866
 def solution(board): # [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 1, 1, 0], [0, 0, 0, 0, 0]]
     answer = 0
     return answer
 # 안전지대랑 공원산책, 카드뭉치, 대충만든자판, 전에했던것들
-https://school.programmers.co.kr/learn/courses/30/lessons/172928 공원산책
+# https://school.programmers.co.kr/learn/courses/30/lessons/172928 공원산책
+def solution(park, routes):
+    board = cr_board(park)
+    r,c = start_point(board)
+    R = len(board)
+    C = len(board[0])
+    ewns2drdc = {'N':(-1,0),'S':(1,0),'W':(0,-1),'E':(0,1)}
+    for route in routes:
+        nr, nc = r,c
+        ewns,n = route.split()
+        dr,dc = ewns2drdc[ewns]
+        for _ in range(int(n)):
+            nr,nc = nr+dr,nc+dc
+            if nr < 0 or nr == R or nc < 0 or nc == C or board[nr][nc] == "X":
+                nr,nc = r,c
+                break
+        r,c = nr,nc
+    return nr,nc
+def cr_board(park):
+    board = []
+    for s in park:
+        board.append(list(s))
+    return board
+def start_point(board):
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == "S":
+                return i,j
 
-https://school.programmers.co.kr/learn/courses/30/lessons/120866 안전지대
-https://school.programmers.co.kr/learn/courses/30/lessons/159994 카드뭉치
-https://school.programmers.co.kr/learn/courses/30/lessons/160586 대충만든자판
+
+# https://school.programmers.co.kr/learn/courses/30/lessons/120866 안전지대
+def solution(board):
+    answer = 0
+    R = len(board)
+    C = len(board[0])
+    for r in range(R):
+        for c in range(C):
+            if board[r][c] == 1:
+                for dr,dc in ((-1,0),(1,0),(0,-1),(0,1),(-1,-1),(-1,1),(1,-1),(1,1)):
+                    nr,nc = r+dr,c+dc
+                    if 0 <= nr < R and 0 <= nc < C and board[nr][nc] != 1:
+                        board[nr][nc] = 2
+    for r in range(R):
+        for c in range(C):
+            if board[r][c] == 0:
+                answer+= 1
+    return answer
+from collections import deque    
+# https://school.programmers.co.kr/learn/courses/30/lessons/159994 카드뭉치
+def solution(cards1, cards2, goal):
+    queue1 = deque(cards1)
+    queue2 = deque(cards2)
+    for letter in goal:
+        if queue1 and queue1[0] == letter:
+            queue1.popleft()
+        elif queue2 and queue2[0] == letter:
+            queue2.popleft()
+        else:
+            return "No"
+    return "Yes"
+
+# https://school.programmers.co.kr/learn/courses/30/lessons/160586 대충만든자판
+def solution(keymap, targets):
+    answer = []
+    for target in targets: #"ABACD"
+        result = 0
+        for keym in target: # A,B,A,C,D
+            min = float('inf')
+            for word in keymap:
+                if min > word.find(keym)
+
+    return answer
+# ["ABACD", "BCEFD"]	["ABCD","AABB"]
