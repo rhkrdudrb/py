@@ -1,5 +1,28 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/160586
 def solution(keymap, targets):
+    answer = []
+    letter2cnt = cr_letter2cnt(keymap)
+    for target in targets:
+        result = 0
+        for letter in target:
+            if letter not in letter2cnt:
+                result = -1
+                break
+            result += letter2cnt[letter]
+        answer.append(result)
+    return answer
+def cr_letter2cnt(keymap):
+    letter2cnt = {}
+    for word in keymap:
+        for i,letter in enumerate(word,1):
+            if letter in letter2cnt:
+                if letter2cnt[letter] > i:
+                    letter2cnt[letter] = i
+            else:
+                letter2cnt[letter] = i
+    return letter2cnt
+------------------------------------------------------------------
+def solution(keymap, targets):
     for target in targets:
         result = 0
         for keym in target:
