@@ -11,4 +11,4 @@ def solution(N, stages):
     for i in sorted(stage2cnt.items(), key=lambda x: x[1], reverse=True):
         answer.append(i[0])
     return  answer
-#실패함..
+#실패함..70점
