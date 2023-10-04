@@ -1,4 +1,27 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/140108
+# 생각하며 외움 20231004
+def solution(s):
+    s = list(s)
+    answer = 0
+    cnt1 = 0
+    cnt2 = 0
+    for letter in list(s):
+        x = s[0]
+        if letter == x:
+            cnt1 +=1
+        else:
+            cnt2 +=1
+        if cnt1 == cnt2 :
+            
+            del s[0:cnt1+cnt2]
+            answer +=1
+            cnt1 = 0
+            cnt2 = 0
+    if len(s) != 0 :
+        answer+=1
+    return answer
+
+
 # 문자열 s가 입력되었을 때 다음 규칙을 따라서 이 문자열을 여러 문자열로 분해하려고 합니다.
 
 # 먼저 첫 글자를 읽습니다. 이 글자를 x라고 합시다.
