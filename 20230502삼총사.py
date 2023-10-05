@@ -1,4 +1,7 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/131705
+from itertools import combinations
+def solution(number):
+    return list(map(sum,list(combinations(number,3)))).count(0)
 # 한국중학교에 다니는 학생들은 각자 정수 번호를 갖고 있습니다. 
 # 이 학교 학생 3명의 정수 번호를 더했을 때 0이 되면 3명의 학생은 삼총사라고 합니다. 예를 들어, 5명의 학생이 있고, 
 # 각각의 정수 번호가 순서대로 -2, 3, 0, 2, -5일 때, 첫 번째, 세 번째, 네 번째 학생의 정수 번호를 더하면 0이므로 세 학생은 삼총사입니다.
